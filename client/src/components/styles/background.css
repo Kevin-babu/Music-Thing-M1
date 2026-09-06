@@ -1,0 +1,139 @@
+.background-animation {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -1;
+    background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+  }
+
+  .p{
+    white-space: "pre-line"
+  }
+
+  .logo{
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    font-size: 1.4rem;
+    /* border: 2px solid #00ffc8; */
+    color: #ffffffdd;
+  }
+
+  .track{
+    font-size: smaller;
+  }
+
+  .edit-btn {
+    background-color: #3c506368;
+    border: none;
+    color: #cfd3d6;
+    height: 40px;
+    font-size: x-small;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e9ecef;
+  }
+  
+  .play-btn{
+    background-color: #040f0768;
+    border: none;
+    color: #cfd3d6;
+    height: 40px;
+    font-size: x-small;
+  }
+
+  .play-btn:hover {
+    background-color: #e9ecef;
+    color: #0f172a;
+  }
+
+  .profile-btn{
+    background-color: #e2e8e400;
+    /* border: 1px solid grey; */
+    color: #cfd3d6;
+    /* border-radius: 20%; */
+  }
+
+  .profile-btn:hover {
+    /* background-color: #e9ecef30; */
+    color: rgb(0, 255, 38);
+  }
+
+  .sidebar-link:hover {
+    background: rgba(255,255,255,0.08);
+    color: white !important;
+    transform: translateX(5px);
+}
+
+.sidebar-link.active {
+    background: rgba(29,185,84,.18);
+    color: #1DB954 !important;
+}
+
+.sidebar-link i {
+    font-size: 1.15rem;
+}
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    animation: float 18s ease-in-out infinite alternate;
+  }
+  
+  .blob1 {
+    width: 350px;
+    height: 350px;
+    background: #0080ff;
+    top: 10%;
+    left: 10%;
+  }
+  
+  .blob2 {
+    width: 400px;
+    height: 400px;
+    background: #8d78f1;
+    bottom: 5%;
+    right: 10%;
+    animation-duration: 22s;
+  }
+  
+  .blob3 {
+    width: 280px;
+    height: 280px;
+    background: #ff5edc;
+    top: 45%;
+    left: 50%;
+    animation-duration: 26s;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(80px, -60px) scale(1.15);
+    }
+    100% {
+      transform: translate(-60px, 80px) scale(0.9);
+    }
+  }
+
+  .background-animation {
+    animation: hueShift 20s linear infinite;
+  }
+  
+  @keyframes hueShift {
+    from {
+      filter: hue-rotate(0deg);
+    }
+    to {
+      filter: hue-rotate(360deg);
+    }
+  }
