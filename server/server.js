@@ -13,7 +13,7 @@ import { GoogleGenAI } from "@google/genai";
 
 dotenv.config();
 
-await connectMCP();
+// await connectMCP();
 
 const clientSecret = process.env.clientSecret;
 const redirectURI = process.env.redirectUri;
@@ -64,7 +64,7 @@ app.post('/login', (req, res) => {
         
         console.log('Access Token:', accessToken);
 
-        setAccessToken(accessToken)
+        // setAccessToken(accessToken).        //uncomment this line if you want to set the access token in your MCP client
 
 
         res.json({
