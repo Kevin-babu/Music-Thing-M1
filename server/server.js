@@ -7,7 +7,7 @@ import express from "express";
 import cors from "cors"
 import dotenv from "dotenv"
 import { GoogleGenAI } from "@google/genai";
-import {connectMCP, setAccessToken, getTrackId} from "./mcp_client.js";
+// import {connectMCP, setAccessToken, getTrackId} from "./mcp_client.js";
 
 
 
@@ -256,40 +256,40 @@ app.post('/api/playlist-tracks', async (req, res) => {
 
 
 
-app.post('/llm', async (req, res)=>{
+// app.post('/llm', async (req, res)=>{
 
-    const prompt = req.body.prompt
-    const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY`
-    const ai = new GoogleGenAI({});
+//     const prompt = req.body.prompt
+//     const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY`
+//     const ai = new GoogleGenAI({});
 
-    console.log("llm thinking")
+//     console.log("llm thinking")
 
    
 
-    // const result = getTrackId(name, artist)
+//     // const result = getTrackId(name, artist)
 
-    const interaction = await ai.interactions.create({
-      model: "gemini-3.5-flash",
-      input: ConversionPrompt,
-    });
+//     const interaction = await ai.interactions.create({
+//       model: "gemini-3.5-flash",
+//       input: ConversionPrompt,
+//     });
     
 
-    console.log(interaction.output_text);
+//     console.log(interaction.output_text);
 
-    const songs = interaction.output_text
-      .split("\n")
-      .filter(line => /^\d+\./.test(line)) // Keep only numbered lines
-      .map(line => {
-        const [, song] = line.match(/^\d+\.\s*(.*)$/);
-        const [name, artist] = song.split(/\s*-\s*/);
+//     const songs = interaction.output_text
+//       .split("\n")
+//       .filter(line => /^\d+\./.test(line)) // Keep only numbered lines
+//       .map(line => {
+//         const [, song] = line.match(/^\d+\.\s*(.*)$/);
+//         const [name, artist] = song.split(/\s*-\s*/);
 
-        return {
-          name: name.trim(),
-          artist: artist.trim()
-        };
-    });
+//         return {
+//           name: name.trim(),
+//           artist: artist.trim()
+//         };
+//     });
 
-    console.log("after update", songs);
+//     console.log("after update", songs);
 
 //     const songs = [
 //   { name: 'Mere Gully Mein', artist: 'DIVINE, Naezy' },
@@ -304,30 +304,30 @@ app.post('/llm', async (req, res)=>{
 //   { name: 'Jungli Sher', artist: 'DIVINE' }
 // ]
 
-    const result = await getTrackId(songs)
+//     const result = await getTrackId(songs)
     
-    console.log("Tool final result ", result)
+//     console.log("Tool final result ", result)
 
-    try {
-      if (result.content[0].text == "Resolved tracks")
-        {res.status(200).json({
-          "reply" : interaction.output_text,
-          "tracks" : result})
-        }
-      else{
-        res.status(400).json(result)
-      }
+//     try {
+//       if (result.content[0].text == "Resolved tracks")
+//         {res.status(200).json({
+//           "reply" : interaction.output_text,
+//           "tracks" : result})
+//         }
+//       else{
+//         res.status(400).json(result)
+//       }
         
 
       
-    }
-    catch (err){
-      res.status(err.response?.status || 500).json({
-          error: err.response?.data || "Failed to fetch playlists",
-        });
-    }
+//     }
+//     catch (err){
+//       res.status(err.response?.status || 500).json({
+//           error: err.response?.data || "Failed to fetch playlists",
+//         });
+//     }
     
-})
+// })
 
 
 
