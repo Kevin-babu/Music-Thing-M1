@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+
 import Player from './cards/Player'
 import PlaylistCreator from './cards/PlaylistCreator'
 import MusicUI from './cards/MusicUI'
@@ -6,7 +6,7 @@ import Queue from './cards/Queue'
 import PlaylistTracks from './cards/PlaylistTracks'
 
 import { useState, useEffect } from 'react';
-import {Container, Form, Row, Col } from 'react-bootstrap'
+import {Container, Row, Col } from 'react-bootstrap'
 
 const auroraFrost = {
   background: `

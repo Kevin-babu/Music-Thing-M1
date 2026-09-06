@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/background.css'
@@ -49,7 +48,6 @@ export default function MusicUI({accessToken, albumId}) {
     {albumData  ?
     <div className="ms-1 " style={{ height:"100%", width: "100%", color:"white"}}>
       <span className='' style={{color:"green"}}>Now Playing</span>
-      <img src=""/>
       <h4> </h4><span>Album :  {albumData.name.substring(0,40)}</span>
       <p>Artists:
         {albumData.artists.map((artist) =>{

@@ -1,4 +1,3 @@
-import React from 'react'
 import Tracks from './Tracks'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -116,7 +115,7 @@ export default function PlaylistTracks({accessToken, playlistID, setPlayingTrack
             
             <Col md={1} style={{fontSize:"13px"}}>{index+1}</Col>
             <Col md={2}>
-              <img src = {track.albumUrl} style={{height: "40px", width:"40px", borderRadius:"2px"}}></img>
+              <img src = {track.albumUrl} style={{height: "40px", width:"40px", borderRadius:"2px"}} alt="Album Art"></img>
             </Col>
             <Col >
               <div key={track.trackid}

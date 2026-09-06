@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { InputGroup, Form, Button, Container } from "react-bootstrap";
-import { useEffect } from 'react'
 import axios from 'axios';
 import Spinner from "react-bootstrap/Spinner";
 

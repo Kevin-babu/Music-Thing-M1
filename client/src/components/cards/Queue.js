@@ -1,9 +1,7 @@
 import axios from 'axios';
-import React from 'react'
 import SpotifyWebApi from 'spotify-web-api-node';
 import {useState, useEffect}  from 'react'
 import { Row, Col,Button } from 'react-bootstrap';
-import TrackSearchResult from './TrackSearchResult';
 import { motion } from "framer-motion";
 
 const spotifyApi = new SpotifyWebApi({

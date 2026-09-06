@@ -1,6 +1,6 @@
-import React from 'react'
 
-export default function ({track, chooseTrack}) {
+
+export default function TrackSearchResult({track, chooseTrack}) {
     // console.log("track in TrackSearchResult --", track.albumUrl)
 
     function handlePlay() {

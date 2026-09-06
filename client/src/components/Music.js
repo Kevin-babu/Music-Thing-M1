@@ -1,4 +1,4 @@
-import React, { use } from 'react'
+
 import Auth from './Auth'
 import { useState, useEffect } from 'react';
 import {Container, Form, Row, Col } from 'react-bootstrap'
@@ -82,7 +82,7 @@ useEffect(() => {
 }, [search, accessToken]);
 
 useEffect(() => {
-  if (search == "") return
+  if (search === "") return
  setShowSearchResults(true)
  console.log("here")
 }, [search])
@@ -154,31 +154,6 @@ useEffect(()=>{
                       )}
                   </Col>
 
-                  {/* <Col xs="auto" className="profile-section">
-                    <div className='justify-content-center align-items-center'  
-                    style={{background: "rgba(0, 0, 0, 0.56)", color: "white", border: "1px solid rgb(84, 86, 90)", borderRadius: "30px " ,  height:"40px", width:"100%"}}>
-                      <Row className='justify-content-center align-items-center' style={{borderRadius: "30px", height:"40px", width:"100%"}}>
-                        <Col md={2} className='ms-4'>
-                          <i className='profile-btn bi bi-house'></i>
-                        </Col>
-                        <Col md={2}>
-                          <i className=' profile-btn bi bi-bell'></i>
-                        </Col>
-                        <Col md={2} className='me-4'> 
-                          <i className='profile-btn bi bi-three-dots-vertical'></i>
-                        </Col>
-                        
-                        <Col md={2}>
-                          {profile.profileImage?
-                          <img src={profile.profileImage} style={{height: "30px", width:"30px", borderRadius:"50%", border:"solid 1px rgb(14, 242, 40) "}} className=''/> 
-                          : 
-                          <div><i className='bi bi-person-circle me-3'></i></div>
-                          }
-                        </Col>
-                      </Row>
-                    </div>
-                  </Col> */}
-
                   <Col xs="auto" className="profile-section">
                     <div
                       className="d-flex align-items-center justify-content-between px-3"
@@ -206,6 +181,8 @@ useEffect(()=>{
                             borderRadius: "50%",
                             border: "solid 1px rgb(14, 242, 40)"
                           }}
+
+                          alt="Profile"
                         />
                       ) : (
                         <i className="bi bi-person-circle"></i>
