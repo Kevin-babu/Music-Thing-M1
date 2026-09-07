@@ -10,7 +10,7 @@ export default function Auth(code) {
     const [expiresIn, setExpiresIn] = useState(null);
 
     useEffect(() => {
-        axios.post('http://localhost:3001/login', {
+        axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/login`, {
          code,
         }).then(response => {
             console.log('Access Token details:', response)
@@ -31,7 +31,7 @@ useEffect(() => {
     
     const interval = setInterval(() => {    
 
-        axios.post('http://localhost:3001/refresh', {
+        axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/refresh`, {
             refreshToken,
         }).then(response => {
             console.log('Refreshed Access Token details:', response)
