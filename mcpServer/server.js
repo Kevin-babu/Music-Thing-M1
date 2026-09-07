@@ -167,3 +167,4 @@ app.delete("/mcp", async (req, res) => {
    });
 });
 
+export default app;
