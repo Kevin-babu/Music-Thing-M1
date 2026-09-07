@@ -19,11 +19,7 @@ const clientSecret = process.env.clientSecret;
 const redirectURI = process.env.redirectUri;
 const clientId = process.env.clientId;
 
-let spotifyAccessToken = null;
 
-app.listen(3001, () => {
-    console.log("Backend running");
-});
 
 
 app.use(cors());
@@ -67,7 +63,7 @@ app.post('/login', (req, res) => {
         console.log('Access Token:', accessToken);
 
         // setAccessToken(accessToken)       //uncomment this line if you want to set the access token in your MCP client
-        spotifyAccessToken = accessToken; // Set the global variable to the new access token
+        // Set the global variable to the new access token
 
         res.json({
             access_token: accessToken,
@@ -261,6 +257,7 @@ app.post('/api/playlist-tracks', async (req, res) => {
 app.post('/llm', async (req, res)=>{
 
     const prompt = req.body.prompt
+    const accessToken = req.body.accessToken
     const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY`
     const ai = new GoogleGenAI({});
 
@@ -306,7 +303,7 @@ app.post('/llm', async (req, res)=>{
 //   { name: 'Jungli Sher', artist: 'DIVINE' }
 // ]
 
-    const result = await getTrackId(songs, spotifyAccessToken);
+    const result = await getTrackId(songs, accessToken);
     
     console.log("Tool final result ", result)
 
