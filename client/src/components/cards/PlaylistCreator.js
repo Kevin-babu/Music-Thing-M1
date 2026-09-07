@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { InputGroup, Form, Button, Container } from "react-bootstrap";
 import axios from 'axios';
 import Spinner from "react-bootstrap/Spinner";
+import '../../App.css'
 
 
 export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylistTracks, newPlaylistTracks, user, accessToken, setRefreshQueue, refreshQueue}) {
@@ -155,17 +156,17 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
 
                 <div style={{whiteSpace:"pre-line"}}>{placeholder}</div>
                 {playlistGenerated? <div>
-                    <Button variant="success" className='me-3' onClick={() => {
+                    <button  className='me-3 frost-button ' onClick={() => {
                         setviewGeneratedPlaylist(true)
                     }}>
                         View Playlist 
-                    </Button>
-                    <Button className="me-3" variant="success" onClick={handleCreate}>
+                    </button>
+                    <button className="me-3 frost-button"  onClick={handleCreate}>
                         Create Playlist on Spotify
-                    </Button>
-                    <Button variant="success" className='bi bi-arrow-counterclockwise' onClick={handleRefresh}>
+                    </button>
+                    <button  className='frost-button bi bi-arrow-counterclockwise' onClick={handleRefresh}>
                         
-                    </Button>
+                    </button>
                 </div>
                 : <div></div>   
                 }
