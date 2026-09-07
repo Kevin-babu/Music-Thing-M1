@@ -32,7 +32,7 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
         setPlaylistGenerated(false);
         
         try{
-            const response = await axios.post("http://localhost:3001/llm", {
+            const response = await axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/llm`, {
             prompt,
             })
             console.log("response from LLM", response)

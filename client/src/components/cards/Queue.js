@@ -5,7 +5,7 @@ import { Row, Col,Button } from 'react-bootstrap';
 import { motion } from "framer-motion";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: "6c8b66a0cce34832bd9895c65d7fb811"
+  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 })
 
 
@@ -22,7 +22,7 @@ export default function Queue({accessToken, playlistID,setPlaylistID, viewGenera
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const response = await axios.post("http://localhost:3001/api/playlists", {
+        const response = await axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/playlists`, {
             accessToken,
         })
 

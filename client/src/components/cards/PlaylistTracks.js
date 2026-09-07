@@ -20,7 +20,7 @@ export default function PlaylistTracks({accessToken, playlistID, setPlayingTrack
   useEffect(() => {
     const fetchPlaylistTracks = async () => {
       try {
-        const response = await axios.post("http://localhost:3001/api/playlist-tracks", {
+        const response = await axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/playlist-tracks`, {
           accessToken,
           playlistID,
         });

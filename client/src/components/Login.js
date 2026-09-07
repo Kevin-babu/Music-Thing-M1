@@ -7,7 +7,7 @@ export default function Login() {
     console.log("here at login")
 
     const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID
-    const redirect_uri = "http://127.0.0.1:3000"
+    const redirect_uri = process.env.REACT_APP_SPOTIFY_FRONTEND_URI  // Your redirect uri
     const response_type = "code"
     const scope = [
         "streaming",

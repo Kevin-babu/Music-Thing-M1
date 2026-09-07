@@ -11,7 +11,7 @@ import Sidebar from './cards/Sidebar';
 import SpotifyWebApi from 'spotify-web-api-node';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: "6c8b66a0cce34832bd9895c65d7fb811"
+  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 })
 
 
@@ -90,7 +90,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchProfile = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/api/profile", {
+      const response = await axios.post(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/profile`, {
           accessToken,
       })
 
