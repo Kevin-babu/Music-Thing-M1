@@ -167,7 +167,3 @@ app.delete("/mcp", async (req, res) => {
    });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`SpotifyMCP server listening on ${process.env.URI}/mcp`);
-});
