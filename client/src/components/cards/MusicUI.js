@@ -21,7 +21,7 @@ export default function MusicUI({accessToken, albumId}) {
     if (!albumId) return;
     const fetchAlbum = async () => {
       try {
-        const response = await axios.post("http://localhost:3001/api/album", {
+        const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/album`, {
             accessToken,
             albumId
         })
