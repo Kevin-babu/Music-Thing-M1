@@ -150,11 +150,12 @@ app.post("/mcp", async (req, res) => {
 
 // GET is used for server-to-client notifications via SSE
 app.get("/mcp", async (req, res) => {
-  res.status(405).json({
-     jsonrpc: "2.0",
-     error: { code: -32000, message: "Method Not Allowed: server is stateless" },
-     id: null,
-   });
+  // res.status(405).json({
+  //    jsonrpc: "2.0",
+  //    error: { code: -32000, message: "Method Not Allowed: server is stateless" },
+  //    id: null,
+  //  });
+  res.send('Hello World!');
 });
 
 // DELETE ends a session
