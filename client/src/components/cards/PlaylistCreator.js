@@ -8,7 +8,7 @@ import '../../App.css'
 export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylistTracks, newPlaylistTracks, user, accessToken, setRefreshQueue, refreshQueue}) {
 
     console.log("user in PlaylistCreator", user)
-    const greeting = `Welcome ${user?user.username:" "}. \n \n Ask Lyra...
+    const greeting = ` Ask Lyra...
 
                         Examples:
 
@@ -95,10 +95,11 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
             await addTracks(id, newPlaylistTracks)
             // console.log("tracks added to Playlist")
             
-            setRefreshQueue(!refreshQueue)
+            
             console.log("refreshQueue set")
 
             setReply("Playlist added")
+            setRefreshQueue(!refreshQueue)
 
         }catch (error){
             console.error("Error creating playlist:", error);
@@ -134,6 +135,7 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
         setPlaceholder(greeting)
         setReply("")
         setNewPlaylistTracks([{}])
+        setviewGeneratedPlaylist(false)
         setPrompt("")
     } 
     

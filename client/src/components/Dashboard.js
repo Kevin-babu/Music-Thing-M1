@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 //   Brain,
 // } from "lucide-react";
 import "./Dashboard.css";
+import Player from './cards/Player';
 
 /**
  * Project dashboard — frosted glass, dark themed.
@@ -123,7 +124,7 @@ function useAnimatedTokens(target, duration = 1100) {
   return (value / 1_000_000).toFixed(2) + "M";
 }
 
-export default function Dashboard({ setPage }) {
+export default function Dashboard({ setPage , accessToken}) {
   const tokenLabel = useAnimatedTokens(1_420_000);
 
     return (
@@ -255,7 +256,7 @@ export default function Dashboard({ setPage }) {
             </div>
         </div>
         </div>
-  
+        {/* <Player accessToken={accessToken}/> */}
             
         </div>
     )

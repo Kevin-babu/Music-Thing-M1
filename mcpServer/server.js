@@ -87,6 +87,7 @@ function createServer() {
 
             if (response.data.tracks.items.length === 0) {
               return null;
+              console.log(`No track found for ${song.name} by ${song.artist}`);
             }
 
             const track = response.data.tracks.items[0];

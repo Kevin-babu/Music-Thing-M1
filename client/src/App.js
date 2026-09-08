@@ -37,7 +37,8 @@ function App() {
         <div className="blob blob3"></div> 
       </div>
     
-     {page === "music"? <Music code = {code} setPage={setPage} accessToken={accessToken}/> : <Dashboard setPage={setPage}/>}
+      <div style={{display: page === "music" ? "block" : "none", height: "100%" }}><Music code = {code} setPage={setPage} accessToken={accessToken}/> </div>
+      <div style={{display: page === "Dashboard" ? "block" : "none", height: "100%" }}><Dashboard setPage={setPage } accessToken={accessToken}  /></div>
     </div>: <Login/>
   )
 };

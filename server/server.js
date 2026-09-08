@@ -148,11 +148,11 @@ app.post('/api/playlists', async (req, res) => {
     const cachedPlaylists = playlistCache.get(accessToken);
 
 
-    if (cachedPlaylists) {
+    // if (cachedPlaylists) {
 
-      console.log("returning from cache")
-      return res.json(cachedPlaylists);
-    }
+    //   console.log("returning from cache")
+    //   return res.json(cachedPlaylists);
+    // }
 
 
     
@@ -258,7 +258,7 @@ app.post('/llm', async (req, res)=>{
 
     const prompt = req.body.prompt
     const accessToken = req.body.accessToken
-    const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY`
+    const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY If the request is unrelated to music, songs, artists, or playlists (e.g. general questions, coding help, unrelated topics, deletion requests), reply only: OUT_OF_CONTEXT`;
     const ai = new GoogleGenAI({});
 
     console.log("llm thinking")

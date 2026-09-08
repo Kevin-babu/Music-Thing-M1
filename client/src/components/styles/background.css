@@ -6,6 +6,11 @@
     background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
   }
 
+  .music-container{
+    font-family: 'Manrope', sans-serif;
+  }
+
+
   body {
     font-family: "Inter", sans-serif;
   }
