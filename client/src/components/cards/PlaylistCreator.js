@@ -139,9 +139,11 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
         setPrompt("")
     } 
     
+    
       return (
         <Container style={{width:"100%", color:"white"}}>
             <InputGroup className="mb-3" style={{height: "50px"}}>
+                <img src="../../../public/57902600d588aa543ceb0043627cb659.jpg" alt="Icon" style={{width: "50px", height: "50px", marginRight: "30px", borderRadius: "50%"}} />
                 <Form.Control
                     style={{backgroundColor: "rgba(0, 0, 0, 0.63)", color:"white", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "10px", whiteSpace:"pre-line"}}
                     type="search"
