@@ -3,6 +3,7 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import {useState, useEffect}  from 'react'
 import { Row, Col,Button } from 'react-bootstrap';
 import { motion } from "framer-motion";
+import '../../App.css'
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
@@ -38,7 +39,7 @@ export default function Queue({accessToken, playlistID,setPlaylistID, viewGenera
   }, [accessToken, refreshQueue]);
 
   return (
-    <div className='' style={{height:"100%", color:"white", overflowY: "auto", overflowX: "hidden"}}>
+    <div className='queue' style={{height:"100%", color:"white", overflowY: "auto", overflowX: "hidden"}}>
       <div>
         <h3 className='m-3'> Playlists</h3>
         {playlist.map((item, index) => (

@@ -5,7 +5,7 @@ import '../styles/background.css'
 import SpotifyWebApi from 'spotify-web-api-node';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: "6c8b66a0cce34832bd9895c65d7fb811"
+  clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
 })
 
 

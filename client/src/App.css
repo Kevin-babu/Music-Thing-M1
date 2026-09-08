@@ -7,6 +7,8 @@
   pointer-events: none;
 }
 
+
+
 body {
   font-family: "Inter", sans-serif;
 }
@@ -15,6 +17,12 @@ body {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+
+.queue::-webkit-scrollbar {
+  display: none;
+}
+
 
 .App-header {
   background-color: #282c34;

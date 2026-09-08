@@ -61,6 +61,13 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
           }
       };
 
+    const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      handleSubmit(e)
+    }
+  }
+
     const handleCreate = async () =>{
 
         try{
@@ -139,9 +146,10 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
                     placeholder="Enter your prompt..."
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
             
-                <Button variant="dark" className= "ms-1 bi bi-arrow-right"onClick={handleSubmit} style={{borderRadius: "10px"}}>
+                <Button variant="dark" className= "ms-1 bi bi-arrow-right" onClick={handleSubmit} onKeyDown={handleKeyDown} style={{borderRadius: "10px"}}>
                 
                 </Button>
                 <Button variant= "dark" className='ms-1 bi bi-mic' style={{borderRadius: "10px"}}></Button>

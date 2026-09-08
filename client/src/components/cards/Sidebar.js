@@ -23,7 +23,7 @@ const navItem = {
   transition: "all .2s ease",
 };
 
-export default function Sidebar() {
+export default function Sidebar( { setPage }) {
   return (
     <div style={sidebarStyle}>
       <div className="text-center mb-4 mt-3 mx-2">
@@ -40,7 +40,9 @@ export default function Sidebar() {
 
       <Nav className="flex-column mt-5 ms-3 justify-content-center">
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("music")
+        }}>
           <i className="profile-btn bi bi-house-door-fill"></i>
           
         </Nav.Link>
@@ -67,7 +69,10 @@ export default function Sidebar() {
           
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("Dashboard")
+        }}>
+          {/* <i className="profile-btn bi bi-graph-up-arrow"></i> */}
           <i className="profile-btn bi bi-bar-chart-line"></i>
           
         </Nav.Link>

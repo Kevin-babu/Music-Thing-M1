@@ -17,10 +17,10 @@ const spotifyApi = new SpotifyWebApi({
 
 
 
-export default function Music({code}) {
+export default function Music({code , setPage, accessToken}) {
 
 // console.log("code in music", code)
-const accessToken = Auth(code)
+
 console.log("accessToken in Music --", accessToken)
 const [search, setSearch] = useState("")
 const [searchResults, setSearchResults] = useState([])
@@ -111,11 +111,11 @@ useEffect(()=>{
 
 
   return (
-   <Container fluid className='  p-0 m-0 h-100' style={{ height: "100vh", width:"100%",  borderRadius: "10px", zIndex: "10" }}>
+   <Container fluid className='  p-0 m-0 h-100 music-container' style={{ height: "100vh", width:"100%",  borderRadius: "10px", zIndex: "10" }}>
       
       <Row className=" w-100 h-100 m-0 ">
         <Col xs="auto" className='p-0 my-1 ms-1' >
-        <Sidebar/>
+        <Sidebar setPage={setPage}/>
         </Col>
         <Col className='h-100 p-0' >
               <div fluid className="sticky-top p-2" style={{width:"100%"}} >
