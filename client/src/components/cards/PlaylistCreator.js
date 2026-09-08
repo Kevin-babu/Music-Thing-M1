@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect  } from 'react'
 import { InputGroup, Form, Button, Container } from "react-bootstrap";
 import axios from 'axios';
 import Spinner from "react-bootstrap/Spinner";
@@ -23,6 +23,23 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
     const [placeholder, setPlaceholder] = useState(greeting)
 
     const [playlistGenerated, setPlaylistGenerated] = useState(false)
+
+    const [index, setIndex] = useState(0);
+
+    const fillers = [
+        "Digging through the crates...",
+        "Matching the vibe...",
+        "Cross-referencing artists...",
+        "Lining up the tracklist...",
+        "Almost there...",
+    ];
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+        setIndex((prev) => (prev + 1) % fillers.length);
+        }, 1800);
+        return () => clearInterval(interval);
+    }, []);
    
 
     const handleSubmit = async () => {
@@ -143,7 +160,7 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
       return (
         <Container style={{width:"100%", color:"white"}}>
             <InputGroup className="mb-3" style={{height: "50px"}}>
-                <img src="../../../public/57902600d588aa543ceb0043627cb659.jpg" alt="Icon" style={{width: "50px", height: "50px", marginRight: "30px", borderRadius: "50%"}} />
+                <img src="https://github.com/Kevin-babu/Music-Thing-M1/blob/main/client/public/57902600d588aa543ceb0043627cb659.jpg?raw=true" alt="Icon" style={{width: "50px", height: "50px", marginRight: "10px", borderRadius: "50%"}} />
                 <Form.Control
                     style={{backgroundColor: "rgba(0, 0, 0, 0.63)", color:"white", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: "10px", whiteSpace:"pre-line"}}
                     type="search"
@@ -161,12 +178,20 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
             <Container>
                 
                 
-                {loading? <div className="d-flex justify-content-center align-items-center">
-                    <Spinner animation="border" variant="primary" />
-                    </div> :<p>{reply}</p>
+                {loading? <div className="d-flex mt-4 pt-5 justify-content-center align-items-center loading-wrap">
+                    {/* <Spinner animation="border" variant="primary" /> */}
+                    <div class="loader ">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div className="loading-text ms-3 ps-4  " key={index}>{fillers[index]}</div>
+                    </div> :<p className="ms-3 pt-3 loading-text" style={{color:"white", whiteSpace:"pre-line"}}>{reply}</p>
                 }
 
-                <div style={{whiteSpace:"pre-line"}}>{placeholder}</div>
+                <div className="ms-4 pt-3 loading-text" style={{whiteSpace:"pre-line"}}>{placeholder}</div>
                 {playlistGenerated? <div>
                     <button  className='me-3 frost-button ' onClick={() => {
                         setviewGeneratedPlaylist(true)
