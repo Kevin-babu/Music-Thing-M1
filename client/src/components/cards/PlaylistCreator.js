@@ -5,7 +5,7 @@ import Spinner from "react-bootstrap/Spinner";
 import '../../App.css'
 
 
-export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylistTracks, newPlaylistTracks, user, accessToken, setRefreshQueue, refreshQueue}) {
+export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylistTracks, newPlaylistTracks, user, accessToken, setRefreshQueue, refreshQueue, newPlaylistName, setNewPlaylistName}) {
 
     console.log("user in PlaylistCreator", user)
     const greeting = ` Ask Lyra...
@@ -90,7 +90,7 @@ export default function PlaylistCreator({setviewGeneratedPlaylist, setNewPlaylis
         try{
             const response = await axios.post('https://api.spotify.com/v1/me/playlists',
                 {
-                    "name": "New Playlist",
+                    "name": newPlaylistName || "New Playlist",
                     "description": "New playlist description",
                     "public": false
                 },

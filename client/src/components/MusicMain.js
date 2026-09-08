@@ -37,7 +37,7 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
   const [playlistID, setPlaylistID] = useState([]);
   const [PlaylistName, setPlaylistName] = useState("");
   const [refreshQueue, setRefreshQueue] = useState(true)
-  const [newPlaylistName, setNewPlaylistName] = useState("")
+  const [newPlaylistName, setNewPlaylistName] = useState("New Playlist")
 
   // console.log(" accesstoken from MusicMain", accessToken)
   console.log("track from MusicMain",track)
@@ -63,6 +63,8 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
             accessToken={accessToken}
             setRefreshQueue= {setRefreshQueue}
             refreshQueue={refreshQueue}
+            newPlaylistName={newPlaylistName}
+            setNewPlaylistName={setNewPlaylistName}
             />
               
             </Col>

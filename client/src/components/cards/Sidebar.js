@@ -47,26 +47,29 @@ export default function Sidebar( { setPage }) {
           
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("music")
+        }}>
           <i className="profile-btn bi bi-stars"></i>
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("music")
+        }}>
           <i className="profile-btn bi bi-search"></i>
           
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("Dashboard")
+        }}>
           <i className="profile-btn bi bi-music-note-list"></i>
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("Dashboard")
+        }}>
           <i className="profile-btn bi bi-heart-fill"></i>
-        </Nav.Link>
-
-        <Nav.Link style={navItem}>
-          <i className="profile-btn bi bi-collection-play"></i>
-          
         </Nav.Link>
 
         <Nav.Link style={navItem} onClick={() => {
@@ -77,7 +80,9 @@ export default function Sidebar( { setPage }) {
           
         </Nav.Link>
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("Dashboard")
+        }}>
           <i className="profile-btn bi bi-clock-history"></i>
         </Nav.Link>
 

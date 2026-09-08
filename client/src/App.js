@@ -14,7 +14,7 @@ const code = new URLSearchParams(window.location.search).get("code");
 
 function App() {
 
-  const [page, setPage] = useState("Dashboard")
+  const [page, setPage] = useState("music")
 
   // const [accessToken, setAccessToken] = useState(null);
   // useEffect(() => {
