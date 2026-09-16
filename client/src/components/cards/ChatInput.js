@@ -18,10 +18,14 @@ export default function ChatInput({
   refreshQueue,
   setRefreshQueue,
   setViewButton,
-  setNewPlaylistName
+  setNewPlaylistName,
+  setShowPop,
+  showPop,
+  popMessage,
+  setPopMessage
 }) {
 
-  const [showPop, setShowPop] = useState(false)
+  
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -37,6 +41,9 @@ export default function ChatInput({
   }
 
   const handleCreate = async () =>{
+
+    setShowPop(true)
+    setPopMessage("Creating Playlist")
 
         try{
             const response = await axios.post('https://api.spotify.com/v1/me/playlists',
@@ -73,8 +80,13 @@ export default function ChatInput({
             console.error("Error creating playlist:", error);
         }
     }
+  
+  
 
   const addTracks = async (id,tracks)=>{
+
+        setPopMessage("resolving Tracks")
+
         const trackList = tracks.map((track)=>{
                             return("spotify:track:"+track.trackId)
                         });
@@ -93,8 +105,11 @@ export default function ChatInput({
             )
         console.log("respose", response.data)
 
-        setShowPop(true)
         setRefreshQueue(!refreshQueue)
+        setTimeout(()=>{
+          setPopMessage("Playlist Created")
+        }, 2000)
+        
         setViewButton(false)
         setviewGeneratedPlaylist(false)
         setNewPlaylistName("New Playlist")
@@ -112,7 +127,7 @@ export default function ChatInput({
       {showPop && (
         <button className="chat-card-banner" type="button">
           <Sparkles size={13} strokeWidth={2} />
-          Playlist created
+          {popMessage}
         </button>
        )}
 
@@ -138,6 +153,7 @@ export default function ChatInput({
             </button>
             {viewButton? <button type="button" className="chat-pill bright" onClick={() => {
                         setviewGeneratedPlaylist(true)
+                        setPopMessage("Click create playlist to add to your list")
                     }}>
               {/* <SlidersHorizontal size={14} strokeWidth={1.8} /> */}
               View Playlist

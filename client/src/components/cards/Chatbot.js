@@ -31,6 +31,8 @@ export default function ChatBot({ userName = 'User' ,
   const [isTyping, setIsTyping] = useState(false)
   const [viewButton, setViewButton] = useState(false)
   const [newPlaylistId, setNewPlaylistId] = useState(null)
+  const [showPop, setShowPop] = useState(false)
+  const [popMessage, setPopMessage] = useState("Thinking...")
 
   const isChatMode = messages.length > 1
 
@@ -73,6 +75,7 @@ export default function ChatBot({ userName = 'User' ,
     setChatMessages(newChatMessage)
     setDraft('')
     setIsTyping(true)
+    setShowPop(true)
 
     const output = await fetch(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/chat/stream`, {
       method: "POST",
@@ -89,24 +92,25 @@ export default function ChatBot({ userName = 'User' ,
     console.log("reply",reply)
 
     if(reply.tracks){
+      setPopMessage("click view playlist for preview")
       setNewPlaylistTracks(reply.tracks.structuredContent.tracks)
       console.log("reply",reply.tracks)
       setViewButton(true)
+    }else{
+      setShowPop(false)
     }
-    // const reply ={
-    //     "result" : "Hello"
-    // } 
     
     console.log("no reply.tracks")
     setIsTyping(false)
+    
     setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: reply.result }])
     setChatMessages((prev) =>[...prev, { id: nextId(), role: 'assistant', content: reply.result }])
 
   }, [messages])
 
-  const handleSuggestionClick = (prompt) => {
-    sendMessage(prompt)
-  }
+  // const handleSuggestionClick = (prompt) => {
+  //   sendMessage(prompt)
+  // }
 
   return (
     <main className={`home-panel ${isChatMode ? 'is-chat' : ''}`} style={{height:"100%", overflow: "hidden"}}>
@@ -144,6 +148,10 @@ export default function ChatBot({ userName = 'User' ,
             setRefreshQueue={setRefreshQueue}
             setViewButton ={setViewButton}
             setNewPlaylistName ={setNewPlaylistName}
+            showPop={showPop}
+            setShowPop={setShowPop}
+            setPopMessage ={setPopMessage}
+            popMessage = {popMessage}
           />
           {/* {!isChatMode && (
             // <SuggestionCards onSelect={handleSuggestionClick} />
