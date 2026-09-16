@@ -8,6 +8,8 @@ import cors from "cors"
 import dotenv from "dotenv"
 import { GoogleGenAI } from "@google/genai";
 import {connectMCP, setAccessToken, getTrackId} from "./mcp_client.js";
+import { playlistGenerationPrompt } from "./prompts/playlistGenerationPrompt.js";
+import { getGroqChatCompletion , getGroqSummarizeMessages} from "./groq.js"; 
 
 
 
@@ -258,7 +260,7 @@ app.post('/llm', async (req, res)=>{
 
     const prompt = req.body.prompt
     const accessToken = req.body.accessToken
-    const ConversionPrompt = `Create 10 Spotify songs for: ${prompt}. Format: Here is a playlist for you 1. Song - Artist ... 10. Song - Artist If the request is unclear, reply only: CLARIFY If the request is unrelated to music, songs, artists, or playlists (e.g. general questions, coding help, unrelated topics, deletion requests), reply only: OUT_OF_CONTEXT`;
+    const ConversionPrompt = playlistGenerationPrompt(prompt)
     const ai = new GoogleGenAI({});
 
     console.log("llm thinking")
@@ -329,7 +331,26 @@ app.post('/llm', async (req, res)=>{
 })
 
 
+app.post("/api/chat/stream", async (req, res) => {
 
+  console.log(req.body)
+    const message  = req.body.message;
+    const accessToken = req.body.accessToken
+    console.log("Received message:", message);
+
+    // getTools()
+  try {
+    const {completion, tracks} = await getGroqChatCompletion(message, accessToken);
+    // console.log("completion at server", completion)
+    console.log("tracks at server", tracks)
+    console.log("Completion received:", completion.choices[0]?.message?.content || "");
+    res.json({ result: completion.choices[0]?.message?.content, tracks : tracks || "" });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
 
 
 app.get('/', (req, res) => {
