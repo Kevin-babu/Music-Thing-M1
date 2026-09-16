@@ -67,7 +67,7 @@ export default function ChatInput({
             console.log("refreshQueue set")
 
             // setReply("Playlist added")
-            setRefreshQueue(!refreshQueue)
+            
 
         }catch (error){
             console.error("Error creating playlist:", error);
@@ -94,6 +94,7 @@ export default function ChatInput({
         console.log("respose", response.data)
 
         setShowPop(true)
+        setRefreshQueue(!refreshQueue)
         setViewButton(false)
         setviewGeneratedPlaylist(false)
         setNewPlaylistName("New Playlist")
