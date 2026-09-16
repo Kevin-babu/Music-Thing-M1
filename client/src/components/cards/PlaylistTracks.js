@@ -111,7 +111,7 @@ export default function PlaylistTracks({accessToken, playlistID, setPlayingTrack
             }}
           >
           
-          <Row className='mb-1 py-1 border border-secondary fs-6' style={{borderRadius:"5px", }}>
+          <Row className='mb-1 py-1 fs-6' style={{borderRadius:"5px", }}>
             
             <Col md={1} style={{fontSize:"13px"}}>{index+1}</Col>
             <Col md={2}>

@@ -1,15 +1,8 @@
 import Sidebar from './cards/Sidebar';
 import React, { useEffect, useRef, useState } from "react";
-// import {
-//   Search,
-//   FileText,
-//   Calculator,
-//   Terminal,
-//   Image as ImageIcon,
-//   Brain,
-// } from "lucide-react";
 import "./Dashboard.css";
 import Player from './cards/Player';
+import { Icon } from 'lucide-react';
 
 /**
  * Project dashboard — frosted glass, dark themed.
@@ -28,12 +21,12 @@ const GENRES = [
 ];
 
 const TOOLS = [
-  { name: "web_search", desc: "Live web lookups", active: true },
-  { name: "file_creation", desc: "Docs, sheets, slides", active: true },
-  { name: "calculator", desc: "Arithmetic & unit conv.", active: false },
-  { name: "code_execution", desc: "Sandboxed runtime", active: true },
-  { name: "image_search", desc: "Visual reference lookup", active: false },
-  { name: "memory", desc: "Cross-session recall", active: true },
+  { name: "get_track_ids", desc: "get track IDs", active: true },
+  { name: "set_song_queue", desc: "Set song queue", active: true },
+  { name: "set_token", desc: "Set access token", active: false },
+  { name: "generatePlaylistTool", desc: "Sandboxed runtime", active: true },
+  { name: "updateTasteProfileTool", desc: "Visual reference lookup", active: false },
+  { name: "memory", desc: "Cross-session recall", active: false },
 ];
 
 function RadarChart() {
@@ -151,7 +144,7 @@ export default function Dashboard({ setPage , accessToken}) {
                 </div>
 
                 <div className="pd-model-row">
-                    <span className="pd-badge">claude-sonnet-5</span>
+                    <span className="pd-badge">gemini-3.5-flash</span>
                     <span className="pd-model-meta">200K context · temp 1.0</span>
                 </div>
 
@@ -229,7 +222,7 @@ export default function Dashboard({ setPage , accessToken}) {
                             <div className="pd-tool-row" key={tool.name}>
                             <div className="pd-tool-left">
                                 <div className="pd-tool-icon">
-                                {/* <Icon size={15} strokeWidth={2} /> */}
+                                <Icon size={15} strokeWidth={2} />
                                 </div>
                                 <div>
                                 <div className="pd-tool-name">{tool.name}</div>

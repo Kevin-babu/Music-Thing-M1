@@ -11,3 +11,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+:root {
+  --bg-void: #05070a;
+  --glow-teal: #0a5a52;
+  --glow-blue: #123a6b;
+
+  --panel: rgba(16, 20, 27, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.07);
+  --panel-inner: rgba(255, 255, 255, 0.03);
+
+  --surface-1: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.055);
+  --surface-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #f1f3f6;
+  --text-secondary: #98a0ad;
+  --text-tertiary: #656d7a;
+
+  --accent: #3d9bf0;
+  --accent-dim: #2a6fa8;
+
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-xl: 28px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* background: var(--bg-void); */
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -7,6 +7,7 @@ import PlaylistTracks from './cards/PlaylistTracks'
 
 import { useState, useEffect } from 'react';
 import {Container, Row, Col } from 'react-bootstrap'
+import ChatBot from './cards/Chatbot'
 
 const auroraFrost = {
   background: `
@@ -53,9 +54,9 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
         {/* Left Column */}
         <Col lg={7} className="d-flex flex-column h-100 " >
 
-          <Row className="flex-grow-1 mb-3" >
-            <Col className=" ">
-            <PlaylistCreator 
+          <Row className="flex-grow-1 mb-3" style={{ minHeight: 0 }}>
+            <Col className="mx-2 mb-3 d-flex flex-column" style={{ height: '100%', overflow: 'hidden' }}>
+            {/* <PlaylistCreator 
             setviewGeneratedPlaylist ={setviewGeneratedPlaylist} 
             setNewPlaylistTracks={setNewPlaylistTracks} 
             newPlaylistTracks={newPlaylistTracks} 
@@ -65,6 +66,17 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
             refreshQueue={refreshQueue}
             newPlaylistName={newPlaylistName}
             setNewPlaylistName={setNewPlaylistName}
+            /> */}
+
+            <ChatBot
+              accessToken={accessToken}
+              setviewGeneratedPlaylist ={setviewGeneratedPlaylist} 
+              setNewPlaylistTracks={setNewPlaylistTracks} 
+              newPlaylistTracks={newPlaylistTracks} 
+              newPlaylistName={newPlaylistName}
+              setNewPlaylistName={setNewPlaylistName}
+              setRefreshQueue= {setRefreshQueue}
+              refreshQueue={refreshQueue}
             />
               
             </Col>

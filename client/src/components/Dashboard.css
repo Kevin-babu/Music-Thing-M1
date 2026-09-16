@@ -1,7 +1,7 @@
 .pd-root{
   --frost-1: rgba(23, 23, 23, 0.493);
-  --frost-2: rgba(255,255,255,0.02);
-  --frost-border: rgba(255,255,255,0.09);
+  --frost-2: rgba(138, 136, 136, 0.335);
+  --frost-border: rgba(109, 108, 108, 0.313);
   --ink: #e9eef2;
   --ink-dim: #93a1ad;
   --ink-faint: #5d6b78;

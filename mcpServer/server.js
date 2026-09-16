@@ -115,8 +115,37 @@ function createServer() {
     }
   );
 
+  server.registerTool(
+    "set_song_queue",
+    {
+      title: "Set Song Queue",
+      description: "Sets the song queue for the user.",
+      inputSchema: z.object({
+        songs: z.array(
+          z.object({
+            name: z.string(),
+            artist: z.string(),
+          })
+        ),
+        accessToken: z.string().describe("The Spotify OAuth access token"),
+      }),
+    },
+    async ({ songs, accessToken }) => {
+      spotifyAccessToken = accessToken;
+      console.log("set_song_queue called", spotifyAccessToken);
+      return {
+        content: [{ type: "text", text: "Song queue set successfully." }],
+      };
+    }
+  );
+
+
+
   return server;
 }
+
+
+
 
 const app = express();
 app.use(express.json());
@@ -148,6 +177,7 @@ app.post("/mcp", async (req, res) => {
      }
    }
 });
+
 
 // GET is used for server-to-client notifications via SSE
 app.get("/mcp", async (req, res) => {
