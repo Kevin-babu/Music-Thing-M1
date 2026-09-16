@@ -336,7 +336,7 @@ app.post("/api/chat/stream", async (req, res) => {
   console.log(req.body)
     const message  = req.body.message;
     const accessToken = req.body.accessToken
-    console.log("Received message:", message);
+    console.log("Received message:", message, accessToken);
 
     // getTools()
   try {

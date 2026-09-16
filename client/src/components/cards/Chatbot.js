@@ -36,6 +36,8 @@ export default function ChatBot({ userName = 'User' ,
 
   const isChatMode = messages.length > 1
 
+  console.log("In chatbot with access token", accessToken)
+
   const sendMessage = useCallback(async (text) => {
     const trimmed = text.trim()
     if (!trimmed) return
@@ -77,6 +79,7 @@ export default function ChatBot({ userName = 'User' ,
     setIsTyping(true)
     setShowPop(true)
 
+    console.log("right before fetch", accessToken)
     const output = await fetch(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/chat/stream`, {
       method: "POST",
       headers: {
@@ -106,7 +109,7 @@ export default function ChatBot({ userName = 'User' ,
     setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: reply.result }])
     setChatMessages((prev) =>[...prev, { id: nextId(), role: 'assistant', content: reply.result }])
 
-  }, [messages])
+  }, [messages, accessToken])
 
   // const handleSuggestionClick = (prompt) => {
   //   sendMessage(prompt)
