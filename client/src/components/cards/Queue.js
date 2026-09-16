@@ -58,7 +58,7 @@ export default function Queue({accessToken, playlistID,setPlaylistID, viewGenera
             >
             <Row>
               <Col md={2} className='me-4 justify-items-center align-items-center'>
-                <img src={item.images[0]?.url} style={{height: "40px", borderRadius:"2px"}} className=''/>
+              <img src={item.images?item.images[0].url : ""} style={{height: "40px", borderRadius:"2px"}} className=''/>
               </Col>  
               <Col>
                 <Row style={{fontSize: "14px"}}>{item.name.substring(0,15)}</Row>
