@@ -71,7 +71,7 @@ export default function ChatInput({
             // console.log("tracks added to Playlist")
             
             
-            console.log("refreshQueue set")
+            
 
             // setReply("Playlist added")
             
@@ -105,11 +105,11 @@ export default function ChatInput({
             )
         console.log("respose", response.data)
 
-        setRefreshQueue(!refreshQueue)
+        
         setTimeout(()=>{
           setPopMessage("Playlist Created")
         }, 2000)
-        
+        setRefreshQueue(!refreshQueue)
         setViewButton(false)
         setviewGeneratedPlaylist(false)
         setNewPlaylistName("New Playlist")
