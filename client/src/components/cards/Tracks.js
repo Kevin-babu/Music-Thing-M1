@@ -1,4 +1,5 @@
 import { Row, Col, Button } from 'react-bootstrap'
+import "../styles/background.css"
 
 export default function Tracks({trackImg, title, duration, index}) {
 
@@ -7,7 +8,7 @@ export default function Tracks({trackImg, title, duration, index}) {
   return (
 
     
-    <div className='track'>
+    <div className='' >
       <Row>   
               <Col md={1} className='ms-2 justify-items-center align-items-center'>{index}</Col>
               <Col md={2} className=' justify-items-center align-items-center'>

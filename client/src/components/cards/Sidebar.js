@@ -1,7 +1,7 @@
 import { Nav } from "react-bootstrap";
 
 const sidebarStyle = {
-  background: "rgba(18, 18, 18, 0.75)",
+  background: "rgba(1, 1, 1, 0.75)",
   backdropFilter: "blur(20px)",
   WebkitBackdropFilter: "blur(20px)",
   border: "1px solid rgba(255,255,255,0.08)",
@@ -29,7 +29,7 @@ export default function Sidebar( { setPage }) {
       <div className="text-center mb-4 mt-3 mx-2">
         <h4
           style={{
-            color: "#1ef240",
+            color: "#0edc9e",
             fontWeight: "700",
             letterSpacing: "2px",
           }}
@@ -48,7 +48,7 @@ export default function Sidebar( { setPage }) {
         </Nav.Link>
 
         <Nav.Link style={navItem} onClick={() => {
-          setPage("music")
+          setPage("details")
         }}>
           <i className="profile-btn bi bi-stars"></i>
         </Nav.Link>
@@ -80,15 +80,15 @@ export default function Sidebar( { setPage }) {
           
         </Nav.Link>
 
-        <Nav.Link style={navItem} onClick={() => {
+        {/* <Nav.Link style={navItem} onClick={() => {
           setPage("Dashboard")
         }}>
           <i className="profile-btn bi bi-clock-history"></i>
-        </Nav.Link>
+        </Nav.Link> */}
 
       </Nav>
 
-      <div className="mt-auto pt-4 ms-3">
+      <div className="mt-auto pt-5 ms-3">
         <hr style={{ borderColor: "rgba(255,255,255,.08)" }} />
 
         <Nav.Link style={navItem}>

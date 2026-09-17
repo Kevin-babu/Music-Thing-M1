@@ -17,7 +17,7 @@
 .pd-container{ width:100%; max-width:1040px; margin:0 auto; }
 
 .pd-head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; padding:0 4px; }
-.pd-head h1{ font-size:19px; font-weight:700; margin:0; letter-spacing:-0.01em; }
+.pd-head h1{ font-size:19px; font-weight:300; margin:0; letter-spacing:-0.01em; }
 .pd-live{ display:flex; align-items:center; gap:7px; font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--ink-dim); }
 .pd-dot-pulse{ width:7px; height:7px; border-radius:50%; background:var(--green); animation: pd-pulse 2.4s infinite; }
 @keyframes pd-pulse{

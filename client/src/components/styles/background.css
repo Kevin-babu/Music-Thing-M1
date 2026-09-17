@@ -142,3 +142,24 @@
       filter: hue-rotate(360deg);
     }
   }
+
+  .track{
+    background-color: #1e283250;
+  }
+
+  .rem-btn{
+    background-color: #040f0768;
+    border: none;
+    color: #cfd3d6;
+    height: 40px;
+    font-size: x-small;
+  
+  }
+
+  .rem-btn:hover{
+    background-color: rgba(255, 0, 0, 0.655);
+  }
+
+  .playlistTracks{
+    font-family: var(--font-display);
+  }

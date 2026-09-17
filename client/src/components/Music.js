@@ -121,7 +121,7 @@ useEffect(()=>{
               <div fluid className="sticky-top p-2" style={{width:"100%"}} >
                 <Row>
                   <Col>
-                    <Form.Control type="search" placeholder="Search Songs/Artists" className='' style={{background: "rgba(0, 0, 0, 0.56)", color: "white", border: "1px solid rgb(84, 86, 90)", borderRadius: "10px"}}
+                    <Form.Control type="search" placeholder="Search Songs/Artists" className='' color='' style={{background: "rgba(0, 0, 0, 0.56)", color: "#fff", border: "1px solid rgb(84, 86, 90)", borderRadius: "10px"}}
                       onChange={e => {setSearch(e.target.value)
                         if (e.target.value === "") {
                           setShowSearchResults(false);

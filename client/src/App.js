@@ -6,6 +6,8 @@ import "./components/styles/background.css"
 import { useState, useEffect } from 'react';
 import Dashboard from './components/Dashboard';
 import Auth from './components/Auth';
+import FeaturesPage from './components/Details';
+import Sidebar from './components/cards/Sidebar';
 
 const code = new URLSearchParams(window.location.search).get("code");
 
@@ -30,15 +32,16 @@ function App() {
   return (
     
     code ?  
-    <div style={{height:"100vh", width:"100%", overflow:"hidden", position:""}}>
+    <div style={{height:"100vh", width:"100%", position:""}}>
       <div className="background-animation" style={{color:"white"}}>
         <div className="blob blob1"></div>
         <div className="blob blob2"></div>
         <div className="blob blob3"></div> 
       </div>
-    
+      {/* <Sidebar style={{width: "60px"}}/> */}
       <div style={{display: page === "music" ? "block" : "none", height: "100%" }}><Music code = {code} setPage={setPage} accessToken={accessToken}/> </div>
       <div style={{display: page === "Dashboard" ? "block" : "none", height: "100%" }}><Dashboard setPage={setPage } accessToken={accessToken}  /></div>
+      <div style={{display: page === "details" ? "block" : "none", height: "100%" }}><FeaturesPage setPage={setPage } accessToken={accessToken}  /></div>
     </div>: <Login/>
   )
 };
