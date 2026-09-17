@@ -91,7 +91,9 @@ export default function Sidebar( { setPage }) {
       <div className="mt-auto pt-5 ms-3">
         <hr style={{ borderColor: "rgba(255,255,255,.08)" }} />
 
-        <Nav.Link style={navItem}>
+        <Nav.Link style={navItem} onClick={() => {
+          setPage("settings")
+        }}>
           <i className="profile-btn bi bi-gear-fill"></i>
           
         </Nav.Link>

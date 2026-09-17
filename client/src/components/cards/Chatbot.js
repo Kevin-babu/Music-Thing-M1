@@ -46,29 +46,29 @@ export default function ChatBot({ userName = 'User' ,
 
     let newChatMessage = [...chatMessages, { id: nextId(), role: "user", content: trimmed }]
 
-    // if (newMessages.length > 6) {
-    //   const cutoff = newMessages.length - 2 // keep the last 6 messages verbatim
-    //   const toSummarize = newMessages.slice(0, cutoff)
-    //   const recent = newMessages.slice(cutoff)
+    if (newMessages.length > 6) {
+      const cutoff = newMessages.length - 2 // keep the last 6 messages verbatim
+      const toSummarize = newMessages.slice(0, cutoff)
+      const recent = newMessages.slice(cutoff)
 
-    //   console.log("Messages to summarize:", toSummarize)
+      console.log("Messages to summarize:", toSummarize)
 
-    //   const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify({
-    //       messages: toSummarize.map(({ role, content }) => ({ role, content })),
-    //     }),
-    //   })
-    //   const { summary } = await summaryRes.json()
+      const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: toSummarize.map(({ role, content }) => ({ role, content })),
+        }),
+      })
+      const { summary } = await summaryRes.json()
 
-    //   console.log("Summary received:", summary)
+      console.log("Summary received:", summary)
 
-    //   newMessages = [
-    //     { id: nextId(), role: "system", content: `Summary of earlier conversation: ${summary}` },
-    //     ...recent,
-    //   ]
-    // }
+      newMessages = [
+        { id: nextId(), role: "system", content: `Summary of earlier conversation: ${summary}` },
+        ...recent,
+      ]
+    }
 
     console.log("new messages:", newMessages)
     console.log("new chat messages", chatMessages)

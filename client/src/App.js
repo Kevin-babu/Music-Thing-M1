@@ -42,6 +42,7 @@ function App() {
       <div style={{display: page === "music" ? "block" : "none", height: "100%" }}><Music code = {code} setPage={setPage} accessToken={accessToken}/> </div>
       <div style={{display: page === "Dashboard" ? "block" : "none", height: "100%" }}><Dashboard setPage={setPage } accessToken={accessToken}  /></div>
       <div style={{display: page === "details" ? "block" : "none", height: "100%" }}><FeaturesPage setPage={setPage } accessToken={accessToken}  /></div>
+      <div style={{display: page === "details" ? "block" : "none", height: "100%" }}><FeaturesPage setPage={setPage } accessToken={accessToken}  /></div>
     </div>: <Login/>
   )
 };

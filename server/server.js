@@ -353,6 +353,20 @@ app.post("/api/chat/stream", async (req, res) => {
 });
 
 
+app.post("/api/chat/summarize", async (req, res) => {
+    const { messages } = req.body;
+    console.log("Received messages for summarization:", messages);
+  try {
+    const summary = await getGroqSummarizeMessages(messages);
+    console.log("Summary received:", summary.choices[0]?.message?.content || "");
+    res.json({ summary: summary.choices[0]?.message?.content || "" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

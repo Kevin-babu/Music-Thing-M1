@@ -143,11 +143,11 @@ export default function ChatInput({
         <div className="chat-input-row">
           <div className="chat-input-tools">
             <img src="https://github.com/Kevin-babu/Music-Thing-M1/blob/main/client/public/57902600d588aa543ceb0043627cb659.jpg?raw=true" alt="Icon" style={{width: "35px", height: "35px", marginRight: "10px", borderRadius: "50%"}} />
-            <button type="button" className="chat-pill">
+            {/* <button type="button" className="chat-pill">
               <Paperclip size={14} strokeWidth={1.8} />
               Import file
-            </button>
-            <button type="button" className="chat-pill">
+            </button> */}
+            <button type="button" className="chat-pill" >
               <SlidersHorizontal size={14} strokeWidth={1.8} />
               Tools
             </button>
