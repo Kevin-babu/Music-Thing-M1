@@ -32,16 +32,21 @@ const auroraFrost = {
 export default function MusicMain({accessToken, playingTrack, setPlayingTrack, user}) { 
 
   const access_Token =accessToken
-  const track = playingTrack
+  const [trackUri, setTrackUri] = useState("")
   const [viewGeneratedPlaylist, setviewGeneratedPlaylist ] = useState(false);
   const [newPlaylistTracks, setNewPlaylistTracks] = useState([{}])
   const [playlistID, setPlaylistID] = useState([]);
   const [PlaylistName, setPlaylistName] = useState("");
   const [refreshQueue, setRefreshQueue] = useState(true)
   const [newPlaylistName, setNewPlaylistName] = useState("New Playlist")
+  const [play, setPlay] = useState(false);
+
+  useEffect(() => {
+  setTrackUri(playingTrack?.uri);
+}, [playingTrack]);
 
   // console.log(" accesstoken from MusicMain", accessToken)
-  console.log("track from MusicMain",track)
+  console.log("track from MusicMain",playingTrack)
 
   useEffect(() => { 
   console.log("playlist name", PlaylistName)
@@ -77,18 +82,25 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
               setNewPlaylistName={setNewPlaylistName}
               setRefreshQueue= {setRefreshQueue}
               refreshQueue={refreshQueue}
+              setTrackUri={setTrackUri}
+              setPlay={setPlay}
             />
               
             </Col>
           </Row>
           
           <Row className=""style={{}}>
-            <MusicUI accessToken={access_Token} albumId={track?.albumId} />
+            <MusicUI accessToken={access_Token} albumId={playingTrack?.albumId} />
           </Row>
 
           <Row className=" mt-auto" >
             <Col>
-              <Player accessToken={access_Token} trackUri={track?.uri}/>
+              <Player 
+              accessToken={access_Token}
+              trackUri={trackUri}
+              setPlay={setPlay}
+              play={play}
+              />
             </Col>
           </Row>
 

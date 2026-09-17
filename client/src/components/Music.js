@@ -26,6 +26,7 @@ const [search, setSearch] = useState("")
 const [searchResults, setSearchResults] = useState([])
 const [playingTrack, setPlayingTrack] = useState()
 const [showsearchResults, setShowSearchResults] = useState(false)
+const [device, setDevice] = useState("")
 const [profile, setProfile] = useState({
   "username": null,
   "profileImage": null
@@ -103,6 +104,28 @@ useEffect(() => {
     }
   }
   fetchProfile()
+
+  const fetchDevice = async()=>{ 
+    try {
+      const response =await axios.get("https://api.spotify.com/v1/me/player/devices ", 
+      {
+      headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json"
+          }
+    })
+    console.log("Device response", response)
+    const targetDevice = response.data.devices.find(
+      (d) => d.name === "Spotify Web Player"
+    );
+    const deviceId = targetDevice?.id;
+    setDevice(deviceId);
+    console.log("Device set", device)
+    }catch (error){
+    console.error("Error fetching device:", error);
+  }
+  }
+  fetchDevice()
 }, [accessToken])
 
 useEffect(()=>{

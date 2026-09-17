@@ -4,6 +4,7 @@ import ChatInput from './ChatInput.js'
 // import SuggestionCards from './SuggestionCards.jsx'
 import ChatMessages from './ChatMessages.js'
 import './Chatbot.css'
+import axios from 'axios'
 
 const MOCK_REPLIES = [
   "Got it — I've noted that down. Anything else you'd like to add?",
@@ -23,7 +24,9 @@ export default function ChatBot({ userName = 'User' ,
   newPlaylistTracks,
   refreshQueue,
   setRefreshQueue,
-  setNewPlaylistName
+  setNewPlaylistName,
+  setTrackUri,
+  setPlay
 }) {
   const [messages, setMessages] = useState([{ role: "system", content: "You are a music assistant. You only help with playlists and music." },])
   const [chatMessages, setChatMessages] = useState([])
@@ -33,13 +36,23 @@ export default function ChatBot({ userName = 'User' ,
   const [newPlaylistId, setNewPlaylistId] = useState(null)
   const [showPop, setShowPop] = useState(false)
   const [popMessage, setPopMessage] = useState("Thinking...")
+  const [audioUnlocked, setAudioUnlocked] = useState(false)
 
   const isChatMode = messages.length > 1
 
-  console.log("In chatbot with access token", accessToken)
+  // console.log("In chatbot with access token", accessToken)
 
   const sendMessage = useCallback(async (text) => {
+    
+    if (!audioUnlocked) {
+    setPlay(true);      // fire once synchronously in the gesture
+    setAudioUnlocked(true);
+    setTimeout(()=>{setPlay(false)}, 2000)
+    
+  }
+    // setPlay(false)
     const trimmed = text.trim()
+
     if (!trimmed) return
 
     let newMessages = [...messages, { id: nextId(), role: "user", content: trimmed }]
@@ -51,7 +64,7 @@ export default function ChatBot({ userName = 'User' ,
       const toSummarize = newMessages.slice(0, cutoff)
       const recent = newMessages.slice(cutoff)
 
-      console.log("Messages to summarize:", toSummarize)
+      // console.log("Messages to summarize:", toSummarize)
 
       const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
         method: "POST",
@@ -70,8 +83,8 @@ export default function ChatBot({ userName = 'User' ,
       ]
     }
 
-    console.log("new messages:", newMessages)
-    console.log("new chat messages", chatMessages)
+    // console.log("new messages:", newMessages)
+    // console.log("new chat messages", chatMessages)
 
     setMessages(newMessages)
     setChatMessages(newChatMessage)
@@ -79,7 +92,7 @@ export default function ChatBot({ userName = 'User' ,
     setIsTyping(true)
     setShowPop(true)
 
-    console.log("right before fetch", accessToken)
+    // console.log("right before fetch", accessToken)
     const output = await fetch(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/chat/stream`, {
       method: "POST",
       headers: {
@@ -93,22 +106,42 @@ export default function ChatBot({ userName = 'User' ,
 
     const reply = await output.json();
     console.log("reply",reply)
+    console.log("actions", reply.actions)
 
     if(reply.tracks){
       setPopMessage("click view playlist for preview")
       setNewPlaylistTracks(reply.tracks.structuredContent.tracks)
-      console.log("reply",reply.tracks)
+      // console.log("reply",reply.tracks)
       setViewButton(true)
     }else{
       setShowPop(false)
     }
+
+    if(reply.actions){
+      for (const action of reply.actions) {
+        if (action.type === "PLAY_TRACK") {
+          console.log("action called", action.type, action.uri, reply.result)
+          setTrackUri("spotify:track:"+action.uri);
+          setPlay(true)
+          setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: reply.result }])
+          setChatMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: "Playing" }])
+          setViewButton(false)
+        }
+        // if (action.type === "SET_PLAYBACK") {
+        //   console.log("action called", action.type, action.play, reply.result)
+        //   // setPlay(action.play);
+        // }
+      }
+    }
+      console.log("no reply.tracks")
     
-    console.log("no reply.tracks")
-    setIsTyping(false)
-    
+    if(reply.result||reply.tracks){
     setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: reply.result }])
     setChatMessages((prev) =>[...prev, { id: nextId(), role: 'assistant', content: reply.result }])
-
+    }
+    
+    setIsTyping(false)
+    
   }, [messages, accessToken])
 
   // const handleSuggestionClick = (prompt) => {

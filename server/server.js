@@ -36,7 +36,7 @@ import SpotifyWebApi from "spotify-web-api-node";
 app.post('/login', (req, res) => {
     console.log('Authorization request received:', req.body); //req.body
     const code = req.body.code; 
-    console.log('Authorization code received:', code); //code
+    // console.log('Authorization code received:', code); //code
     // Get the authorization code from the request body
     // Exchange the authorization code for an access token using Spotify's API
     // You can use a library like axios or node-fetch to make the request 
@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
         const refreshToken = data.body['refresh_token'];
         const expiresIn = data.body['expires_in'];
         
-        console.log('Access Token:', accessToken);
+        // console.log('Access Token:', accessToken);
 
         // setAccessToken(accessToken)       //uncomment this line if you want to set the access token in your MCP client
         // Set the global variable to the new access token
@@ -85,7 +85,7 @@ app.post('/login', (req, res) => {
 app.post('/refresh', (req, res) => {
     
     const refreshToken = req.body.refreshToken;
-    console.log('Refresh token received:', refreshToken);
+    // console.log('Refresh token received:', refreshToken);
 
     const SpotifyApi = new SpotifyWebApi({
         clientId: clientId,
@@ -98,7 +98,7 @@ app.post('/refresh', (req, res) => {
         const accessToken = data.body['access_token'];
         const expiresIn = data.body['expires_in'];
 
-        console.log('New Access Token:', accessToken);
+        // console.log('New Access Token:', accessToken);
 
         res.json({
             access_token: accessToken,
@@ -123,7 +123,7 @@ app.post('/api/profile', async (req, res) => {
             },
           }
         );
-        console.log("fetched profile from spotify")
+        // console.log("fetched profile from spotify")
         res.json(response.data);
       } catch (err) {
         console.error(err.response?.data || err.message);
@@ -170,7 +170,7 @@ app.post('/api/playlists', async (req, res) => {
             },
           }
         );
-        console.log("fetched playlist from spotify")
+        // console.log("fetched playlist from spotify")
         playlistCache.set(accessToken, response.data);
 
 
@@ -212,9 +212,9 @@ app.post('/api/album', async (req, res) => {
         );
         albumCache.set(id, response.data); // ********************* 
 
-        console.log(
-            "returning from spotify"
-        )
+        // console.log(
+        //     "returning from spotify"
+        // )
         res.json(response.data);
       } catch (err) {
         console.error(err.response?.data || err.message);
@@ -230,7 +230,7 @@ app.post('/api/playlist-tracks', async (req, res) => {
     const accessToken = req.body.accessToken
     const id = req.body.playlistID
 
-    console.log("playlist id --", req.body)
+    // console.log("playlist id --", req.body)
 
     try {
         const response = await axios.get(
@@ -241,9 +241,9 @@ app.post('/api/playlist-tracks', async (req, res) => {
             },
           }
         );
-        console.log(
-            "returning from spotify"
-        )
+        // console.log(
+        //     "returning from spotify"
+        // )
         res.json(response.data);
       } catch (err) {
         console.error(err.response?.data || err.message);
@@ -340,11 +340,11 @@ app.post("/api/chat/stream", async (req, res) => {
 
     // getTools()
   try {
-    const {completion, tracks} = await getGroqChatCompletion(message, accessToken);
+    const {completion, tracks, actions} = await getGroqChatCompletion(message, accessToken);
     // console.log("completion at server", completion)
-    console.log("tracks at server", tracks)
-    console.log("Completion received:", completion.choices[0]?.message?.content || "");
-    res.json({ result: completion.choices[0]?.message?.content, tracks : tracks || "" });
+    // console.log("tracks at server", tracks)
+    // console.log("Completion received:", completion.choices[0]?.message?.content || "");
+    res.json({ result: completion.choices[0]?.message?.content, tracks : tracks || "" , actions: actions});
 
   } catch (err) {
     console.error(err);

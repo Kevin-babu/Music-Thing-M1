@@ -1,35 +1,76 @@
 import Groq from "groq-sdk";
 import dotenv from "dotenv";
-import { generatePlaylistTool } from "./tools.js";
+import { generatePlaylistTool, setCurrentTrack, setPlayback } from "./tools.js";
 import { playlistGenerationPrompt } from "./prompts/playlistGenerationPrompt.js";
 import { getTrackId } from "./mcp_client.js";
+import axios from 'axios'
 dotenv.config();
 
 
-// console.log("Groq import:", Groq);
+
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-// console.log("groq instance:", groq);
-// console.log("groq.chat:", groq.chat);
+async function searchTrackUri(query,type, accessToken){
+const resp = await axios.get("https://api.spotify.com/v1/search",
+    {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json"
+        },
+
+        params: {
+          q: query,
+          type: type,
+          limit: 2
+        }
+      }
+)
+
+const uri = resp.data.tracks.items[0].id
+
+return uri
+}
 
 export async function getGroqChatCompletion(messages, accessToken) {
-    console.log("getGroqChatCompletion called with messages:", messages, accessToken);
+    // console.log("getGroqChatCompletion called with messages:", messages, accessToken);
 
     const chatCompletion = await groq.chat.completions.create({
     messages,
     model: "openai/gpt-oss-20b",
-    tools: [generatePlaylistTool],
+    tools: [generatePlaylistTool, setCurrentTrack, setPlayback],
     tool_choice: "auto",
     })
-    // console.log("from groq.jsCompletion received:", chatCompletion.choices[0]?.message?.content || "");
+    console.log("from groq.jsCompletion received:", chatCompletion.choices[0]?.message?.content || "");
     const routeMsg = chatCompletion.choices[0].message;
+    const toolCalls = routeMsg.tool_calls;
     const call = routeMsg.tool_calls?.find((c) => c.function.name === "generate_playlist");
+
+    const actions = [];
+    if (toolCalls){
+      for (const call of toolCalls) {
+      const args = JSON.parse(call.function.arguments);
+
+      if (call.function.name === "set_current_track") {
+        console.log("Play track called", args.query)
+        const uri = await searchTrackUri(args.query,"track", accessToken); // server-side fetch to Spotify search API
+        actions.push({ type: "PLAY_TRACK", uri });
+        console.log("URI returned from request", uri)
+        // return {completion: chatCompletion, tracks: null, actions:actions}
+      }
+
+      if (call.function.name === "set_playback") {
+        console.log("Set Playback called", args.play)
+        // actions.push({ type: "SET_PLAYBACK", play: args.play });
+      }
+    }
+    }
+    
 
     if (!call) {
     // clarifying question or off-topic decline, straight from the model
-    console.log("No tool call", chatCompletion)
-    return {completion: chatCompletion, tracks: null}
+    console.log("No tool call", chatCompletion.choices[0].message)
+    return {completion: chatCompletion, tracks: null, actions:actions}
     }
 
     console.log("generatePlaylistTool call", call)
@@ -44,7 +85,7 @@ export async function getGroqChatCompletion(messages, accessToken) {
         // tool_choice: "auto",
     });
 
-    console.log(genRes)
+    console.log(genRes.choices[0]?.message?.content)
 
     const songs = genRes.choices[0]?.message?.content
       .split("\n")
@@ -68,7 +109,7 @@ export async function getGroqChatCompletion(messages, accessToken) {
     // try {
         if (result.content[0].text == "Resolved tracks")
             {console.log("returning.... ", genRes, result)
-            return {completion: genRes, tracks :result}}
+            return {completion: genRes, tracks :result, actions: actions}}
         else{
             return
         }

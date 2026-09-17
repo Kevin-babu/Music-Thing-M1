@@ -92,7 +92,7 @@ export default function PlaylistTracks({accessToken, playlistID, setPlayingTrack
             </h4>
           ) : (
             <h4 className='ms-3 flex mb-2'>{newPlaylistName}
-                <Button className='ms-5 play-btn bi ' onClick={()=>setIsEditing(true)}>Edit</Button>
+                <Button className='ms-4 play-btn bi ' onClick={()=>setIsEditing(true)}>Edit</Button>
                 <Button className="rem-btn ms-2" onClick={()=>{setviewGeneratedPlaylist(false)}} > Close </Button>
                 </h4>
         )}

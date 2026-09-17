@@ -3,8 +3,7 @@ import "../styles/background.css"
 
 export default function Tracks({trackImg, title, duration, index}) {
 
-  console.log("trackImg --", trackImg)
-  console.log("title --", title)
+
   return (
 
     
