@@ -88,7 +88,7 @@ export default function Sidebar( { setPage }) {
 
       </Nav>
 
-      <div className="mt-auto pt-5 ms-3">
+      <div className="mt-auto pt-5 ms-3 mb-5">
         <hr style={{ borderColor: "rgba(255,255,255,.08)" }} />
 
         <Nav.Link style={navItem} onClick={() => {
@@ -98,6 +98,17 @@ export default function Sidebar( { setPage }) {
           
         </Nav.Link>
       </div>
+
+      <Nav.Link className="mt-auto pt-5 ms-3" style={navItem} onClick={() => {
+          setPage("settings")
+        }}>
+          <img src="../../../public/2026-09-18 10.42.44.jpg"></img>
+        </Nav.Link>
+        <Nav.Link className="mt-auto pt-5 " style={navItem} onClick={() => {
+          setPage("settings")
+        }}>
+          <span>c 2026</span>
+        </Nav.Link>
     </div>
   );
 }
