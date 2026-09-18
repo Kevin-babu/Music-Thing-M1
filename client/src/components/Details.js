@@ -201,7 +201,7 @@ function FeatureCard({ feature }) {
 export default function FeaturesPage({setPage}) {
   return (
     <div className='' style={{height:"100%", width:"100%", display:"flex", flexDirection:"row", }}>
-                <div className='m-1 sticky-left' style={{ width:"90px", display:"flex", flexDirection:"row", overflow:"hidden",}}>
+                <div className='m-1 sticky-left' style={{ width:"95px", display:"flex", flexDirection:"row", overflow:"hidden",}}>
                     <Sidebar setPage={setPage}/>
                 </div>
     <section className="features-page">

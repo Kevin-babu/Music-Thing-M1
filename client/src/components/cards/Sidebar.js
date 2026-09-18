@@ -11,7 +11,8 @@ const sidebarStyle = {
   border: "1px solid rgba(255,255,255,0.08)",
   borderRadius: "20px",
   height: "100%",
-  width:"100%"
+  width:"100%",
+  fontfamily: "Manrope, sans-serif"
 };
 
 const navItem = {

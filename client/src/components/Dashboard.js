@@ -122,7 +122,7 @@ export default function Dashboard({ setPage , accessToken}) {
 
     return (
         <div className='' style={{height:"100%", width:"100%", display:"flex", flexDirection:"row", overflow:"hidden"}}>
-            <div className='m-1' style={{ width:"90px", display:"flex", flexDirection:"row", overflow:"hidden"}}>
+            <div className='m-1' style={{ width:"95px", display:"flex", flexDirection:"row", overflow:"hidden"}}>
                 <Sidebar setPage={setPage}/>
             </div>
         <div className="pd-root mt-4">
