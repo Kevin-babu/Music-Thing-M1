@@ -11,7 +11,7 @@ const spotifyApi = new SpotifyWebApi({
 
 
 
-export default function Queue({accessToken, playlistID,setPlaylistID, viewGeneratedPlaylist, setviewGeneratedPlaylist, newPlaylistTracks, setPlaylistName, refreshQueue}) {
+export default function Queue({accessToken, playlistID,setPlaylistID, viewGeneratedPlaylist, setviewGeneratedPlaylist, newPlaylistTracks, setPlaylistName, refreshQueue, setRefreshQueue}) {
 
   // spotifyApi.setAccessToken(accessToken);
 
@@ -41,7 +41,14 @@ export default function Queue({accessToken, playlistID,setPlaylistID, viewGenera
   return (
     <div className='queue' style={{height:"100%", color:"white", overflowY: "auto", overflowX: "hidden"}}>
       <div>
-        <h3 className='m-3'> Playlists</h3>
+        <h3 className='m-3 ' style={{display:"flex"}}> 
+          Playlists 
+          <button className='ms-3 refresh bi bi-arrow-clockwise'
+            onClick={()=>{setRefreshQueue(!refreshQueue)
+              console.log("refresh")
+            }}>
+          </button>
+        </h3>
         {playlist.map((item, index) => (
           <motion.div
             key={item.id}
@@ -61,7 +68,7 @@ export default function Queue({accessToken, playlistID,setPlaylistID, viewGenera
               <img src={item.images?item.images[0].url : ""} style={{height: "40px", borderRadius:"2px"}} className=''/>
               </Col>  
               <Col>
-                <Row style={{fontSize: "14px"}}>{item.name.substring(0,15)}</Row>
+                <Row style={{fontSize: "14px"}}>{item.name.substring(0,22)}</Row>
                 <Row className='' style={{fontSize: "8px"}}> {item.items.total} Tracks </Row>
                 
               </Col>

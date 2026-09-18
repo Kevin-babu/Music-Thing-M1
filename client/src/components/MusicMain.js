@@ -139,6 +139,7 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
               newPlaylistTracks = {newPlaylistTracks}
               setPlaylistName = {setPlaylistName}
               refreshQueue ={refreshQueue}
+              setRefreshQueue={setRefreshQueue}
             />
             
           </div>

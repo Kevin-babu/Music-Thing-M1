@@ -123,3 +123,20 @@ body {
   from { opacity: 0; transform: translateY(3px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+.refresh{
+  
+    background-color: #040f0768;
+    border: none;
+    color: #ffffff;
+    height: 40px;
+    width: 40px;
+    font-size: x-small;
+    border-radius: 25%;
+}
+
+.refresh:hover{
+    background-color: rgba(4, 132, 13, 0.973);
+    font-size: small;
+    font-weight:bolder;
+  }
