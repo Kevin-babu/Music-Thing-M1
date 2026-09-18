@@ -28,8 +28,9 @@ const resp = await axios.get("https://api.spotify.com/v1/search",
 )
 
 const uri = resp.data.tracks.items[0].id
+const name = resp.data.tracks.items[0].name
 
-return uri
+return {uri, name}
 }
 
 export async function getGroqChatCompletion(messages, accessToken) {
@@ -53,9 +54,9 @@ export async function getGroqChatCompletion(messages, accessToken) {
 
       if (call.function.name === "set_current_track") {
         console.log("Play track called", args.query)
-        const uri = await searchTrackUri(args.query,"track", accessToken); // server-side fetch to Spotify search API
-        actions.push({ type: "PLAY_TRACK", uri });
-        console.log("URI returned from request", uri)
+        const {uri, name} = await searchTrackUri(args.query,"track", accessToken); // server-side fetch to Spotify search API
+        actions.push({ type: "PLAY_TRACK", uri , name});
+        console.log("URI returned from request", uri, name)
         // return {completion: chatCompletion, tracks: null, actions:actions}
       }
 

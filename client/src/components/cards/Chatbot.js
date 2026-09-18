@@ -47,39 +47,39 @@ export default function ChatBot({ userName = 'User' ,
     if (!audioUnlocked) {
     setPlay(true);      // fire once synchronously in the gesture
     setAudioUnlocked(true);
-    setTimeout(()=>{setPlay(false)}, 2000)
+    
     
   }
-    // setPlay(false)
-    const trimmed = text.trim()
+  setTimeout(()=>{setPlay(false)}, 2000) 
+  const trimmed = text.trim()
 
-    if (!trimmed) return
+  if (!trimmed) return
 
-    let newMessages = [...messages, { id: nextId(), role: "user", content: trimmed }]
+  let newMessages = [...messages, { id: nextId(), role: "user", content: trimmed }]
 
-    let newChatMessage = [...chatMessages, { id: nextId(), role: "user", content: trimmed }]
+  let newChatMessage = [...chatMessages, { id: nextId(), role: "user", content: trimmed }]
 
-    if (newMessages.length > 6) {
-      const cutoff = newMessages.length - 2 // keep the last 6 messages verbatim
-      const toSummarize = newMessages.slice(0, cutoff)
-      const recent = newMessages.slice(cutoff)
+  if (newMessages.length > 6) {
+    const cutoff = newMessages.length - 2 // keep the last 6 messages verbatim
+    const toSummarize = newMessages.slice(0, cutoff)
+    const recent = newMessages.slice(cutoff)
 
-      // console.log("Messages to summarize:", toSummarize)
+    // console.log("Messages to summarize:", toSummarize)
 
-      const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: toSummarize.map(({ role, content }) => ({ role, content })),
-        }),
-      })
-      const { summary } = await summaryRes.json()
+    const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: toSummarize.map(({ role, content }) => ({ role, content })),
+      }),
+    })
+    const { summary } = await summaryRes.json()
 
-      console.log("Summary received:", summary)
+    console.log("Summary received:", summary)
 
-      newMessages = [
-        { id: nextId(), role: "system", content: `Summary of earlier conversation: ${summary}` },
-        ...recent,
+    newMessages = [
+      { id: nextId(), role: "system", content: `Summary of earlier conversation: ${summary}` },
+      ...recent,
       ]
     }
 
@@ -120,11 +120,11 @@ export default function ChatBot({ userName = 'User' ,
     if(reply.actions){
       for (const action of reply.actions) {
         if (action.type === "PLAY_TRACK") {
-          console.log("action called", action.type, action.uri, reply.result)
+          console.log("action called", action.type, action.uri, action.name, reply.result)
           setTrackUri("spotify:track:"+action.uri);
           setPlay(true)
           setMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: reply.result }])
-          setChatMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: "Playing" }])
+          setChatMessages((prev) => [...prev, { id: nextId(), role: 'assistant', content: "Playing "+action.name }])
           setViewButton(false)
         }
         // if (action.type === "SET_PLAYBACK") {

@@ -23,6 +23,7 @@ export default function Music({code , setPage, accessToken}) {
 
 console.log("accessToken in Music --", accessToken)
 const [search, setSearch] = useState("")
+const [searchReset, setSearchReset] = useState(true)
 const [searchResults, setSearchResults] = useState([])
 const [playingTrack, setPlayingTrack] = useState()
 const [showsearchResults, setShowSearchResults] = useState(false)
@@ -36,8 +37,9 @@ const [profile, setProfile] = useState({
 function chooseTrack(track) {
   console.log("track Selected --", track)
   setPlayingTrack(track)
-  setSearch("")
+  
   setShowSearchResults(false)
+  setTimeout(()=>{setSearch("")}, 500)
 }
 
 useEffect(() => {
@@ -136,16 +138,19 @@ useEffect(()=>{
   return (
    <Container fluid className='  p-0 m-0 h-100 music-container' style={{ height: "100vh", width:"100%",  borderRadius: "10px", zIndex: "10" }}>
       
-      <Row className=" w-100 h-100 m-0 ">
+      <Row className=" w-100 h-100 m-0">
         <Col xs="auto" className='p-0 my-1 ms-1' >
         <Sidebar setPage={setPage}/>
         </Col>
         <Col className='h-100 p-0' >
-              <div fluid className="sticky-top p-2" style={{width:"100%"}} >
+              <div fluid className="sticky-top p-2 " style={{width:"100%"}} >
                 <Row>
                   <Col>
                     <Form.Control type="search" placeholder="Search Songs/Artists" className='' color='' style={{background: "rgba(0, 0, 0, 0.56)", color: "#fff", border: "1px solid rgb(84, 86, 90)", borderRadius: "10px"}}
+                      value={search}
                       onChange={e => {setSearch(e.target.value)
+                        setSearchReset(false)
+                        
                         if (e.target.value === "") {
                           setShowSearchResults(false);
                         }
@@ -157,21 +162,21 @@ useEffect(()=>{
                             position: "absolute",
                             top: "100%",
                             left: "0",
-                            width: "100%",
+                            width: "80%",
                             maxHeight: "50vh",
                             overflowY: "auto",
                             zIndex: 1000,
 
-                            background: "rgba(0, 0, 0, 0.92)",
+                            background: "rgba(0, 0, 0, 0.4)",
                             border: "1px solid rgb(84, 86, 90)",
                             borderRadius: "10px",
-                            padding: "5px",
+                            padding: "3px",
 
                             boxShadow: "0 10px 30px rgba(0,0,0,0.4)",
                           }}
                         >
                           {searchResults.map(track => (
-                            <TrackSearchResult track={track} key={track.uri} chooseTrack ={ chooseTrack}/>
+                            <TrackSearchResult track={track} key={track.uri} chooseTrack ={ chooseTrack} setSearch={setSearch}/>
                           ))}
                         </div> 
                       )}
@@ -216,9 +221,10 @@ useEffect(()=>{
       
 
               </div>
-          <div style={{height: "calc(100vh - 72px)",overflow: "hidden"}}>
+          <div className="   "style={{height: "calc(100vh - 72px)",overflow: "hidden"}}>
             <MusicMain accessToken= {accessToken} playingTrack={playingTrack} setPlayingTrack={setPlayingTrack} user={profile}/>
           </div>
+          
         </Col>
         
         

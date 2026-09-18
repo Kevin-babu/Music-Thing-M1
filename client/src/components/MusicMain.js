@@ -53,7 +53,7 @@ export default function MusicMain({accessToken, playingTrack, setPlayingTrack, u
   }, [PlaylistName]); 
 
   return (
-    <Container fluid className="pt-3 px-3" style={{height: "calc(100vh - 90px)",overflow: "hidden"}}>
+    <Container fluid className="pt-3 px-3 " style={{height: "calc(100vh - 90px)",overflow: "hidden"}}>
       <Row className="g-3 h-100">
 
         {/* Left Column */}

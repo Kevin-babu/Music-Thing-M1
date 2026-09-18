@@ -1,23 +1,24 @@
 
 
-export default function TrackSearchResult({track, chooseTrack}) {
+export default function TrackSearchResult({track, chooseTrack, setSearch}) {
     // console.log("track in TrackSearchResult --", track.albumUrl)
 
     function handlePlay() {
         // console.log("Playing track --", track.title)
         chooseTrack(track)
+        // setSearch("")
     }
 
 
   return (
     <div
-  className="d-flex m-2 align-items-center"
+  className="d-flex m-1 align-items-center"
   style={{
     cursor: "pointer",
     border: "1px solid #6d71768d",
     borderRadius: "10px",
     padding: "5px",
-    backgroundColor: "#17181a72",
+    backgroundColor: "#000000c3",
   }}
   onClick={handlePlay}
 >

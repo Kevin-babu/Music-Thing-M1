@@ -1,5 +1,9 @@
 import { Nav } from "react-bootstrap";
 
+
+const date = new Date()
+const year = date.getFullYear();
+
 const sidebarStyle = {
   background: "rgba(1, 1, 1, 0.75)",
   backdropFilter: "blur(20px)",
@@ -99,15 +103,17 @@ export default function Sidebar( { setPage }) {
         </Nav.Link>
       </div>
 
-      <Nav.Link className="mt-auto pt-5 ms-3" style={navItem} onClick={() => {
+      <Nav.Link className="mt-auto pt-1 ms-2" style={navItem} onClick={() => {
           setPage("settings")
         }}>
-          <img src="../../../public/2026-09-18 10.42.44.jpg"></img>
+          <img src="https://github.com/Kevin-babu/Music-Thing-M1/blob/main/client/public/2026-09-18%2010.42.44.jpg?raw=true" 
+          style = {{width:"30px", height:"30px", marginTop:"30px"}}></img>
         </Nav.Link>
-        <Nav.Link className="mt-auto pt-5 " style={navItem} onClick={() => {
-          setPage("settings")
-        }}>
-          <span>c 2026</span>
+        <Nav.Link className="copywrite ps-3 ms-2" style={{...navItem, fontWeight:"300", fontSize:"10px" }} >
+          <span>© {year}</span>
+        </Nav.Link>
+        <Nav.Link className="copywrite" style={{...navItem, fontWeight:"100",}} >
+          <span className='' style={{position:"absolute",fontSize:"10px" }}>Kevin Babu</span>
         </Nav.Link>
     </div>
   );
