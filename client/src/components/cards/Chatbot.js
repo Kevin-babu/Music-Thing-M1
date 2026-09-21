@@ -66,7 +66,7 @@ export default function ChatBot({ userName = 'User' ,
 
     // console.log("Messages to summarize:", toSummarize)
 
-    const summaryRes = await fetch("http://localhost:3001/api/chat/summarize", {
+    const summaryRes = await fetch(`${process.env.REACT_APP_SPOTIFY_BACKEND_URI}/api/chat/summarize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
