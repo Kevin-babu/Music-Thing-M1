@@ -1,6 +1,6 @@
 
 import { Container, Col, Row, Button } from 'react-bootstrap';
-// import "dotenv/config";
+import '../App.css'
 
 export default function Login() {
 
@@ -95,128 +95,171 @@ export default function Login() {
       // }
 
       return (
-  <Container
-    fluid
-    className="vh-100 d-flex align-items-center justify-content-center p-0"
-    style={{
-      background:
-        "radial-gradient(circle at 50% 40%, #182b24 0%, #0d1117 45%, #080b0f 100%)",
-      color: "white",
-      overflow: "hidden",
-    }}
-  >
-    {/* Background glow */}
-    <div
-      style={{
-        position: "absolute",
-        width: "500px",
-        height: "500px",
-        background: "rgba(30, 242, 64, 0.08)",
-        filter: "blur(120px)",
-        borderRadius: "50%",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        pointerEvents: "none",
-      }}
-    />
+        <Container
+                fluid
+                className="vh-100 align-items-center justify-content-center p-0"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 40%, #182b24 0%, #0d1117 45%, #080b0f 100%)",
+                  color: "white",
+                  overflow: "hidden",
+                }}
+              >
+        <Row className='vh-100 align-items-center ms-4'>
+          <Col>
+            
+                {/* Background glow */}
+                <div
+                  style={{
+                    position: "absolute",
+                    background: "rgba(30, 242, 64, 0.08)",
+                    filter: "blur(120px)",
+                    borderRadius: "50%",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-10%, -2  0%)",
+                    pointerEvents: "none",
+                  }}
+                />  
 
-    <Row className="justify-content-center w-100 m-0 position-relative">
-      <Col xs={11} sm={8} md={6} lg={4} xl={4}>
-        <div
-          style={{
-            background: "rgba(18, 22, 27, 0.88)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: "20px",
-            padding: "3rem 2.5rem",
-            textAlign: "center",
-            color: "white",
-            boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
-          }}
-        >
-          {/* Logo */}
-          <div
-            className="d-flex justify-content-center align-items-center mb-4"
-            style={{
-              width: "64px",
-              height: "64px",
-              margin: "0 auto",
-              borderRadius: "18px",
-              background: "rgba(30, 242, 64, 0.1)",
-              border: "1px solid rgba(30, 242, 64, 0.2)",
-            }}
-          >
-            <i
-              className="bi bi-stars"
-              style={{
-                fontSize: "2rem",
-                color: "#1ef240",
-              }}
-            />
-          </div>
+                <Row className="justify-content-center w-100 m-3 ps-5 position-relative align-items-center">
+                  <Col >
+                    <div
+                      className='p-3'
+                      style={{
+                        background: "rgba(18, 22, 27, 0.88)",
+                        border: "1px solid rgb(61, 65, 61)",
+                        borderRadius: "20px",
+                        textAlign: "center",
+                        color: "white",
+                        width:"80%",
+                        boxShadow: "0 20px 60px rgba(0,0,0,0.45)",
+                      }}
+                    >
+                      {/* Logo */}
+                      <img src="https://github.com/Kevin-babu/Music-Thing-M1/blob/main/client/public/2026-09-18%2010.42.44.jpg?raw=true" 
+          style = {{width:"60px", height:"60px", marginTop:"30px", marginBottom:"20px", borderRadius:"10px"  }}></img>
+                      {/* <div
+                        className="d-flex justify-content-center align-items-center my-4 "
+                        style={{
+                          margin: "0 auto",
+                          borderRadius: "18px",
+                          background: "rgba(30, 242, 64, 0.1)",
+                          border: "1px solid rgba(30, 242, 64, 0.2)",
+                          width:"50%"
+                        }}
+                      >
+                        <i
+                          className="bi bi-stars"
+                          style={{
+                            fontSize: "2rem",
+                            color: "#1ef240",
+                          }}
+                        />
+                      </div> */}
 
-          {/* Title */}
-          <h1
-            style={{
-              fontSize: "2.2rem",
-              fontWeight: "700",
-              marginBottom: "0.5rem",
-              letterSpacing: "-0.5px",
-            }}
-          >
-            Welcome to Lyra
-          </h1>
+                      {/* Title */}
+                      <h1
+                        style={{
+                          fontSize: "2.2rem",
+                          fontWeight: "700",
+                          marginBottom: "0.8rem",
+                          letterSpacing: "-0.5px",
+                        }}
+                      >
+                        Welcome to Lyra
+                      </h1>
 
-          {/* Subtitle */}
-          <p
-            style={{
-              color: "#8f98a3",
-              fontSize: "0.95rem",
-              lineHeight: "1.6",
-              marginBottom: "2rem",
-            }}
-          >
-            Your music. Your playlists.
-            <br />
-            All in one place.
-          </p>
+                      {/* Subtitle */}
+                      <p
+                        style={{
+                          color: "#8f98a3",
+                          fontSize: "0.95rem",
+                          lineHeight: "1.6",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        Your music. Your playlists.
+                        <br />
+                        All in one place.<br/>
 
-          {/* Login button */}
-          <Button
-            as="a"
-            href={AUTHURL}
-            className="w-100 d-flex align-items-center justify-content-center"
-            style={{
-              height: "52px",
-              borderRadius: "12px",
-              background: "#1ef240",
-              border: "none",
-              color: "#07100a",
-              fontWeight: "700",
-              fontSize: "1rem",
-              boxShadow: "0 8px 24px rgba(30, 242, 64, 0.15)",
-            }}
-          >
-            <i
-              className="bi bi-spotify me-2"
-              style={{ fontSize: "1.2rem" }}
-            />
-            Continue with Spotify
-          </Button>
+                        If you have a premium account please send a request to <span style={{color:"green"}}>musicmana1747@gmail.com</span>
+                      </p>
 
-          <p
-            style={{
-              marginTop: "1.5rem",
-              marginBottom: 0,
-              fontSize: "0.75rem",
-              color: "#5f6873",
-            }}
-          >
-            Connect your Spotify account to get started
-          </p>
-        </div>
-      </Col>
-    </Row>
-  </Container>
+                      {/* Login button */}
+                      <a href={AUTHURL}
+                      style={{textDecoration : "none"}}>
+                        <button
+                        className="w-100 d-flex align-items-center justify-content-center demo-button"
+                        style={{height: "52px", textDecoration : "none"}}
+                          >
+                        <i
+                          className="bi bi-spotify me-2"
+                          style={{ fontSize: "1.2rem" }}
+                        />
+                        Continue with your Spotify account
+                      </button>
+                      </a>
+                      
+                      <button
+                        as="a"
+                        href={AUTHURL}
+                        className="w-100 d-flex align-items-center justify-content-center demo-button mt-3"
+                        style={{
+                          height: "52px", 
+                        }}
+                      >
+                        <i
+                          className="bi bi-spotify me-2"
+                          style={{ fontSize: "1.2rem" }}
+                        />
+                        Get Credential with restricted access
+                      </button>
+
+                      <p
+                        style={{
+                          marginTop: "1.5rem",
+                          marginBottom: 0,
+                          fontSize: "0.75rem",
+                          color: "#5f6873",
+                        }}
+                      >
+                        Connect your Spotify account to get started
+                      </p>
+                    </div>
+                  </Col>
+                </Row>
+              
+          </Col>
+          <Col>
+              <Row className='me-5 mb-3  p-3 bor'
+              style={{height:"50%"}}>
+                <div className='vh-50 me-2' style={{position:"relative"}}>
+                  <img src='https://i.pinimg.com/736x/14/c9/ba/14c9ba29f5d27da98cdcd12edba318cb.jpg'
+                  style={{borderRadius:"50px", height:"450px"}}></img>
+                  <div style={{position:"absolute", display:"flex", top:"80%", left:"10%", }}>
+                        <button style={{width:"200px", }}
+                  className='demo-button' >
+                    watch demo</button>
+                    <button style={{width:"280px"}}
+                    className='demo-button ms-3' >
+                   Read Spotify API restrictions</button>
+                  </div>
+                  
+                </div>
+
+              </Row>
+              {/* <Row className='my-3 p-3'
+              style={{height:"50%"}}>
+                <div style={{fontWeight:"500"}}>Features are limited to Premium accounts</div>
+                <span>Please use the following credemtials</span>
+                <div>UserName: </div>
+                <div>Password: </div>
+                
+                
+              </Row>          */}
+          </Col>
+        </Row>
+    </Container>                    
 );
 }
