@@ -59,7 +59,7 @@ export default function ChatBot({ userName = 'User' ,
 
   let newChatMessage = [...chatMessages, { id: nextId(), role: "user", content: trimmed }]
 
-  if (newMessages.length > 6) {
+  if (newMessages.length > 8) {
     const cutoff = newMessages.length - 2 // keep the last 6 messages verbatim
     const toSummarize = newMessages.slice(0, cutoff)
     const recent = newMessages.slice(cutoff)
