@@ -144,7 +144,7 @@ export default function Dashboard({ setPage , accessToken}) {
                 </div>
 
                 <div className="pd-model-row">
-                    <span className="pd-badge">gemini-3.5-flash</span>
+                    <span className="pd-badge">openai/gpt-oss-20b</span>
                     <span className="pd-model-meta">200K context · temp 1.0</span>
                 </div>
 

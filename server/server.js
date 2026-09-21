@@ -41,11 +41,6 @@ app.post('/login', (req, res) => {
     // Exchange the authorization code for an access token using Spotify's API
     // You can use a library like axios or node-fetch to make the request 
     
-
-    console.log("Reached here");
-    console.log("Client ID:", clientId)
-    console.log("Client Secret:", clientSecret)
-    console.log("Redirect URI:", redirectURI)
     
 
 
