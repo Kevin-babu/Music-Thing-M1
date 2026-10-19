@@ -95,7 +95,14 @@ export default function Login() {
       // }
 
       return (
-        <Container
+
+      <div style={{height:"100vh", width:"100%", position:""}}>
+      <div className="background-animation" style={{color:"white"}}>
+        <div className="blob blob1"></div>
+        <div className="blob blob2"></div>
+        <div className="blob blob3"></div> 
+      </div>
+        {/* <Container
                 fluid
                 className="vh-100 align-items-center justify-content-center p-0"
                 style={{
@@ -104,7 +111,7 @@ export default function Login() {
                   color: "white",
                   overflow: "hidden",
                 }}
-              >
+              > */}
         <Row className='vh-100 align-items-center ms-4'>
           <Col>
             
@@ -125,10 +132,8 @@ export default function Login() {
                 <Row className="justify-content-center w-100 m-3 ps-5 position-relative align-items-center">
                   <Col >
                     <div
-                      className='p-3'
+                      className='p-3 frost'
                       style={{
-                        background: "rgba(18, 22, 27, 0.88)",
-                        border: "1px solid rgb(61, 65, 61)",
                         borderRadius: "20px",
                         textAlign: "center",
                         color: "white",
@@ -137,26 +142,11 @@ export default function Login() {
                       }}
                     >
                       {/* Logo */}
+                      
+
                       <img src="https://github.com/Kevin-babu/Music-Thing-M1/blob/main/client/public/2026-09-18%2010.42.44.jpg?raw=true" 
-          style = {{width:"60px", height:"60px", marginTop:"30px", marginBottom:"20px", borderRadius:"10px"  }}></img>
-                      {/* <div
-                        className="d-flex justify-content-center align-items-center my-4 "
-                        style={{
-                          margin: "0 auto",
-                          borderRadius: "18px",
-                          background: "rgba(30, 242, 64, 0.1)",
-                          border: "1px solid rgba(30, 242, 64, 0.2)",
-                          width:"50%"
-                        }}
-                      >
-                        <i
-                          className="bi bi-stars"
-                          style={{
-                            fontSize: "2rem",
-                            color: "#1ef240",
-                          }}
-                        />
-                      </div> */}
+                        style = {{width:"60px", height:"60px", marginTop:"30px", marginBottom:"20px", borderRadius:"10px"  }}></img>
+                      
 
                       {/* Title */}
                       <h1
@@ -235,8 +225,17 @@ export default function Login() {
               <Row className='me-5 mb-3  p-3 bor'
               style={{height:"50%"}}>
                 <div className='vh-50 me-2' style={{position:"relative"}}>
-                  <img src='https://i.pinimg.com/736x/14/c9/ba/14c9ba29f5d27da98cdcd12edba318cb.jpg'
-                  style={{borderRadius:"50px", height:"450px"}}></img>
+                  {/* <img src='https://i.pinimg.com/736x/14/c9/ba/14c9ba29f5d27da98cdcd12edba318cb.jpg'
+                  style={{borderRadius:"50px", height:"450px"}}></img> */}
+                  <video 
+                        src="/istockphoto-1345397067-640_adpp_is.mp4"
+                        style = {{
+                          borderRadius:"50px", height:"450px", width:"650px", objectFit: "cover"}}
+                          autoPlay
+                          muted
+                          playsInline
+                            >
+                      </video>
                   <div style={{position:"absolute", display:"flex", top:"80%", left:"10%", }}>
                         <button style={{width:"200px", }}
                   className='demo-button' >
@@ -260,6 +259,7 @@ export default function Login() {
               </Row>          */}
           </Col>
         </Row>
-    </Container>                    
+    {/* </Container>   */}
+    </div>                  
 );
 }
